@@ -1,0 +1,100 @@
+[
+  {
+    "id": "1",
+    "photo": "/charles-gao-PfAFNYL-qXY-unsplash.jpg",
+    "title": "This is the tile of the product",
+    "price": "Rs. 100",
+    "rating": "2"
+  },
+  {
+    "id": "2",
+    "photo": "/giorgio-trovato-K62u25Jk6vo-unsplash.jpg",
+    "title": "This is the tile of the product",
+    "price": "Rs. 100",
+    "rating": "3"
+  },
+  {
+    "id": "3",
+    "photo": "/jeffrey-grospe-yDouV_MSzOQ-unsplash.jpg",
+    "title": "This is the tile of the product",
+    "price": "Rs. 100",
+    "rating": "4"
+  },
+  {
+    "id": "4",
+    "photo": "/ryan-waring-164_6wVEHfI-unsplash.jpg",
+    "title": "This is the tile of the product",
+    "price": "Rs. 100",
+    "rating": "4.5"
+  },
+  {
+    "id": "5",
+    "photo": "/jeffrey-grospe-yDouV_MSzOQ-unsplash.jpg",
+    "title": "This is the tile of the product",
+    "price": "Rs. 100",
+    "rating": "3.5"
+  },
+  {
+    "id": "6",
+    "photo": "/ryan-waring-164_6wVEHfI-unsplash.jpg",
+    "title": "This is the tile of the product",
+    "price": "Rs. 100",
+    "rating": "4.5"
+  },
+  {
+    "id": "7",
+    "photo": "/j-luis-esquivel-ArGvQkA7iOw-unsplash.jpg",
+    "title": "This is the tile of the product",
+    "price": "Rs. 100",
+    "rating": "5"
+  },
+  {
+    "id": "8",
+    "photo": "/charles-gao-PfAFNYL-qXY-unsplash.jpg",
+    "title": "This is the tile of the product",
+    "price": "Rs. 100",
+    "rating": "2"
+  },
+  {
+    "id": "9",
+    "photo": "/giorgio-trovato-K62u25Jk6vo-unsplash.jpg",
+    "title": "This is the tile of the product",
+    "price": "Rs. 100",
+    "rating": "3"
+  },
+  {
+    "id": "10",
+    "photo": "/jeffrey-grospe-yDouV_MSzOQ-unsplash.jpg",
+    "title": "This is the tile of the product",
+    "price": "Rs. 100",
+    "rating": "4"
+  },
+  {
+    "id": "11",
+    "photo": "/ryan-waring-164_6wVEHfI-unsplash.jpg",
+    "title": "This is the tile of the product",
+    "price": "Rs. 100",
+    "rating": "4.5"
+  },
+  {
+    "id": "12",
+    "photo": "/jeffrey-grospe-yDouV_MSzOQ-unsplash.jpg",
+    "title": "This is the tile of the product",
+    "price": "Rs. 100",
+    "rating": "3.5"
+  },
+  {
+    "id": "13",
+    "photo": "/ryan-waring-164_6wVEHfI-unsplash.jpg",
+    "title": "This is the tile of the product",
+    "price": "Rs. 100",
+    "rating": "4.5"
+  },
+  {
+    "id": "14",
+    "photo": "/j-luis-esquivel-ArGvQkA7iOw-unsplash.jpg",
+    "title": "This is the tile of the product",
+    "price": "Rs. 100",
+    "rating": "5"
+  }
+]
