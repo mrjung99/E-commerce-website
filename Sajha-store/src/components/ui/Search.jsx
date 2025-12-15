@@ -27,8 +27,6 @@ const Search = () => {
         }
     }
 
-
-
     return (
         <div className='relative border border-green-400 py-1 px-3 flex items-center 
         justify-center gap-2 w-lvh ml-3'>
