@@ -2,6 +2,9 @@
   {
     "id": "1",
     "photo": "/charles-gao-PfAFNYL-qXY-unsplash.jpg",
+    "name":"samsung s24",
+    "category":"mobile",
+    "brand":"samsung",
     "title": "This is the tile of the product",
     "price": "Rs. 100",
     "rating": "2"
@@ -11,11 +14,17 @@
     "photo": "/giorgio-trovato-K62u25Jk6vo-unsplash.jpg",
     "title": "This is the tile of the product",
     "price": "Rs. 100",
-    "rating": "3"
+    "rating": "3",
+    "name":"iphone 16",
+    "category":"mobile",
+    "brand":"apple"
   },
   {
     "id": "3",
     "photo": "/jeffrey-grospe-yDouV_MSzOQ-unsplash.jpg",
+    "name":"acer predator",
+    "category":"laptop",
+    "brand":"acer",
     "title": "This is the tile of the product",
     "price": "Rs. 100",
     "rating": "4"
@@ -23,6 +32,9 @@
   {
     "id": "4",
     "photo": "/ryan-waring-164_6wVEHfI-unsplash.jpg",
+    "name":"samsung s23",
+    "category":"mobile",
+    "brand":"samsung",
     "title": "This is the tile of the product",
     "price": "Rs. 100",
     "rating": "4.5"
@@ -31,12 +43,18 @@
     "id": "5",
     "photo": "/jeffrey-grospe-yDouV_MSzOQ-unsplash.jpg",
     "title": "This is the tile of the product",
+    "name":"iphone 14 pro",
+    "category":"mobile",
+    "brand":"apple",
     "price": "Rs. 100",
     "rating": "3.5"
   },
   {
     "id": "6",
     "photo": "/ryan-waring-164_6wVEHfI-unsplash.jpg",
+    "name":"lenovo ideapad slim 3",
+    "category":"laptop",
+    "brand":"lenovo",
     "title": "This is the tile of the product",
     "price": "Rs. 100",
     "rating": "4.5"
@@ -44,6 +62,9 @@
   {
     "id": "7",
     "photo": "/j-luis-esquivel-ArGvQkA7iOw-unsplash.jpg",
+    "name":"asus f15",
+    "category":"laptop",
+    "brand":"asus",
     "title": "This is the tile of the product",
     "price": "Rs. 100",
     "rating": "5"
@@ -51,6 +72,9 @@
   {
     "id": "8",
     "photo": "/charles-gao-PfAFNYL-qXY-unsplash.jpg",
+    "name":"samsung galaxy",
+    "category":"mobile",
+    "brand":"samsung",
     "title": "This is the tile of the product",
     "price": "Rs. 100",
     "rating": "2"
@@ -58,6 +82,9 @@
   {
     "id": "9",
     "photo": "/giorgio-trovato-K62u25Jk6vo-unsplash.jpg",
+    "name":"lenovo legion",
+    "category":"laptop",
+    "brand":"lenovo",
     "title": "This is the tile of the product",
     "price": "Rs. 100",
     "rating": "3"
@@ -65,6 +92,9 @@
   {
     "id": "10",
     "photo": "/jeffrey-grospe-yDouV_MSzOQ-unsplash.jpg",
+    "name":"acer helios 16",
+    "category":"laptop",
+    "brand":"acer",
     "title": "This is the tile of the product",
     "price": "Rs. 100",
     "rating": "4"
@@ -72,6 +102,9 @@
   {
     "id": "11",
     "photo": "/ryan-waring-164_6wVEHfI-unsplash.jpg",
+    "name":"macbook air",
+    "category":"laptop",
+    "brand":"apple",
     "title": "This is the tile of the product",
     "price": "Rs. 100",
     "rating": "4.5"
@@ -79,6 +112,9 @@
   {
     "id": "12",
     "photo": "/jeffrey-grospe-yDouV_MSzOQ-unsplash.jpg",
+    "name":"samsung a50",
+    "category":"mobile",
+    "brand":"samsung",
     "title": "This is the tile of the product",
     "price": "Rs. 100",
     "rating": "3.5"
@@ -86,6 +122,9 @@
   {
     "id": "13",
     "photo": "/ryan-waring-164_6wVEHfI-unsplash.jpg",
+    "name":"nike air jorden",
+    "category":"clothing",
+    "brand":"nike",
     "title": "This is the tile of the product",
     "price": "Rs. 100",
     "rating": "4.5"
@@ -93,6 +132,9 @@
   {
     "id": "14",
     "photo": "/j-luis-esquivel-ArGvQkA7iOw-unsplash.jpg",
+    "name":"nike football shoe",
+    "category":"sports",
+    "brand":"nike",
     "title": "This is the tile of the product",
     "price": "Rs. 100",
     "rating": "5"

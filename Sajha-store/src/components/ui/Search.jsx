@@ -1,50 +1,30 @@
 import { useCallback, useEffect, useRef } from 'react'
 import { CiSearch } from "react-icons/ci";
 import { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { MdClear } from "react-icons/md";
 import product from "../../json/product.json"
 
 const Search = () => {
     const [searchTerm, setSearchTerm] = useState("")
-    const [selectedCategory, setselectedCategory] = useState("all")
+    const [selectedCategory, setselectedCategory] = useState("")
     const [suggestions, setSuggestions] = useState([])
     const [showSuggestion, setShowSuggestion] = useState(false)
     const navigate = useNavigate()
-    const location = useLocation()
     const searchRef = useRef(null)
 
     const handleClear = () => {
         setSearchTerm("")
+        setSuggestions([])
+        setShowSuggestion(false)
     }
 
-    useEffect(() => {
-        const handleClickOutside = (event) => {
-            if (searchRef.current && !searchRef.current.contains(event.target)) {
-                setShowSuggestion(false);
-            }
-        };
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => document.removeEventListener('mousedown', handleClickOutside);
-    }, []);
-
-    useEffect(() => {
-        if (location.pathname === '/search') {
-            const queryParams = new URLSearchParams(location.search);
-            const urlQuery = queryParams.get('q');
-
-            // Ensure urlQuery is a string
-            setSearchTerm(typeof urlQuery === 'string' ? urlQuery : '');
-        }
-    }, [location]);
-
     const getSuggestions = useCallback((query) => {
-
         if (!query || typeof query != "string" || !query.trim()) {
             return []
         }
 
-        product.filter(item => {
+        const filteredProduct = product.filter(item => {
             const itemName = item.name || "";
             const itemCategory = item.category || "";
             const itemTitle = item.title || "";
@@ -59,10 +39,11 @@ const Search = () => {
                 itemCategory.toLowerCase() === selectedCategory.toLowerCase()
 
             return matchText && matchCategory
-        }).slice(0, 5)
+        })
+
+        return filteredProduct.slice(0, 5)
     }, [selectedCategory])
 
-    console.log("suggestions", suggestions);
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -71,7 +52,7 @@ const Search = () => {
                 if (currentSearchTerm.trim()) {
                     const results = getSuggestions(currentSearchTerm)
                     setSuggestions(results)
-                    setShowSuggestion(true)
+                    setShowSuggestion(results.length > 0)
                 } else {
                     setSuggestions([])
                     setShowSuggestion(false)
@@ -85,24 +66,25 @@ const Search = () => {
         }, 300)
     }, [getSuggestions, searchTerm])
 
-    const handleSearch = useCallback((query = searchTerm) => {
+    //handle search method
+    const handleSearch = useCallback((query = searchTerm, category = selectedCategory) => {
         try {
             const searchQuery = typeof query === "string" ? query : String(query)
             const trimmedQuery = searchQuery.trim()
 
+            const params = new URLSearchParams()
             if (trimmedQuery) {
-                const params = new URLSearchParams()
-                params.set("q", query)
-
-                if (selectedCategory !== "all") {
-                    params.set("category", selectedCategory)
-                }
-                navigate(`/search?${params.toString()}`)
-                console.log(params.toString());
-
-                handleClear()
+                params.set("q", trimmedQuery)
+            }
+            if (category !== "all") {
+                params.set("category", category)
             }
 
+            if (trimmedQuery || category !== "all") {
+                navigate(`/search?${params.toString()}`)
+            } else {
+                console.log("No search term or category selected");
+            }
         } catch (error) {
             console.log("Error in search: ", error);
         }
@@ -111,55 +93,93 @@ const Search = () => {
 
     const handleKeyDown = (e) => {
         if (e.key === "Enter") {
+            e.preventDefault()
             handleSearch()
         }
     }
 
     const handleCategoryChanage = (e) => {
-        setselectedCategory(e.target.value || "all")
+        const newCategory = e.target.value || "all"
+        setselectedCategory(newCategory)
+        setTimeout(() => {
+            handleSearch(searchTerm, newCategory)
+        }, 0);
+        setSuggestions([])
+        setShowSuggestion(false)
     }
 
-    console.log(suggestions);
+    const handleSuggestionClick = (item) => {
+        const query = item.name || item.category || ''
+        handleSearch(query)
+        setSearchTerm(query)
+        handleClear()
+    }
+
+    useEffect(() => {
+        const handleMouseClickOutside = (e) => {
+            if (searchRef.current && !searchRef.current.contains(e.target)) {
+                setShowSuggestion(false)
+            }
+        }
+        document.addEventListener("mousedown", handleMouseClickOutside)
+
+        return () => document.removeEventListener("mousedown", handleMouseClickOutside)
+    }, [])
 
 
     return (
         <div ref={searchRef} className='relative border border-green-400 py-1 px-3 flex items-center 
-        justify-center gap-2 w-lvh ml-3'>
-            <select name="" id="" className='outline-0 text-[12px]'
+            justify-center gap-2 w-lvh'>
+            <select name="category" id="" className='outline-0 bg-gray-100 rounded p-2 text-[11px] cursor-pointer'
                 value={selectedCategory}
                 onChange={handleCategoryChanage}
             >
                 <option value="all">All Categories</option>
-                <option value="homeandlifestyle">Home and lifestyle</option>
-                <option value="electronic">Electronic Accessories</option>
+                <option value="mobile">Mobile</option>
+                <option value="laptop">Laptop</option>
                 <option value="sports">Sports</option>
                 <option value="clothing">Clothing</option>
                 <option value="healthandbeauty">Health and Beauty</option>
             </select>
 
-            <div className="input-wrapper ">
-                <input type="text" placeholder='Search for product' className=' text-[13px] 
-                text-gray-800 p-3 outline-0 w-full bg-gray-100 rounded'
+            <div className="input-wrapper py-0.5">
+                <input type="text" placeholder='Search for product' className=' text-[11px] 
+                    text-gray-800 p-2 outline-0 w-full bg-gray-100 rounded'
                     value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    onClick={handleSearch}
+                    onChange={(e) => {
+                        setSearchTerm(e.target.value)
+                        setShowSuggestion(true)
+                    }}
+                    onFocus={() => {
+                        if (suggestions.length > 0) {
+                            setShowSuggestion(true)
+                        }
+                    }}
                     onKeyDown={handleKeyDown}
                 />
             </div>
             {
-                searchTerm && <MdClear size={24} className='absolute right-12 cursor-pointer 
-                hover:bg-gray-500 hover:rounded-full hover:text-white' onClick={handleClear} />
+                searchTerm && <MdClear size={20} className='absolute right-11 cursor-pointer 
+                    hover:bg-gray-800 hover:rounded-full hover:text-white' onClick={handleClear} />
             }
             <button className='absolute right-5 cursor-pointer z-50' onClick={() => handleSearch()}>
-                <CiSearch size={26} />
+                <CiSearch size={20} />
             </button>
-            {/* {showSuggestion && <div className='absolute z-40'>
-                {suggestions.map(item => {
-                    console.log("suggestion item", item);
 
-                    return <p key={item.id}>{item.title}</p>
-                })}
-            </div>} */}
+            {showSuggestion && suggestions.length > 0 && (
+                <div className='absolute mt-1 top-full left-1/4 right-0 z-50 bg-white border-gray-100 shadow-lg rounded-md'>
+                    {
+                        suggestions.map(item => (
+                            <div key={item.id} onClick={() => handleSuggestionClick(item)} className='p-2 hover:bg-gray-100 cursor-pointer border-b
+                                border-gray-100 last:border-b-0'>
+                                <p className='text-[11px] font-medium'>
+                                    {item.name}
+                                </p>
+                            </div>
+                        ))
+                    }
+                </div>
+            )}
         </div>
     )
 }

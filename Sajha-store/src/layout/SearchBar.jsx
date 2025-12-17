@@ -21,7 +21,7 @@ const SearchBar = () => {
         ${isScrolled ? "shadow-md " : "shadow-none"}`}>
             <div>
                 <NavLink to="/">
-                    <h1 className='text-lg font-semibold'>SAJHA STORE</h1>
+                    <h1 className='text-lg font-semibold'><span>SAJHA</span><span className='text-orange-600'>STORE</span></h1>
                 </NavLink>
             </div>
             <Search />

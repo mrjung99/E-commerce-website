@@ -2,10 +2,10 @@ import React from 'react'
 
 const ProductFilter = () => {
     return (
-        <section className='p-3 ml-3 border-r border-gray-300 w-[200px]'>
-            <div className='mb-3'>
-                <h1 className=''>Category</h1>
-                <ul className='text-[12px] '>
+        <section className='border-r border-gray-200'>
+            <div className='mb-3 px-2'>
+                <h1 className='text-[12px]'>Category</h1>
+                <ul className='text-[10px] '>
                     <li className='cursor-pointer py-1'>Mobile</li>
                     <li className='cursor-pointer py-1'>Laptop</li>
                     <li className='cursor-pointer py-1'>Computer</li>
@@ -14,11 +14,11 @@ const ProductFilter = () => {
                 </ul>
             </div>
 
-            <hr className='text-gray-300' />
+            <hr className='text-gray-200' />
 
-            <div className='mt-3'>
-                <h1>Brand</h1>
-                <ul className='text-[12px]  '>
+            <div className='mt-3 px-2'>
+                <h1 className='text-[12px]'>Brand</h1>
+                <ul className='text-[10px]  '>
                     <li className='cursor-pointer py-1'>Apple</li>
                     <li className='cursor-pointer py-1'>Acer</li>
                     <li className='cursor-pointer py-1'>Asus</li>
@@ -26,10 +26,10 @@ const ProductFilter = () => {
                 </ul>
             </div>
 
-            <hr className='text-gray-300 mt-3' />
+            <hr className='text-gray-200 mt-3' />
 
-            <div className='mt-4'>
-                <h1>Price</h1>
+            <div className='mt-4 px-2'>
+                <h1 className='text-[12px]'>Price</h1>
                 <input type="range" />
             </div>
         </section>
