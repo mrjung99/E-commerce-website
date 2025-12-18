@@ -17,7 +17,7 @@ const SearchBar = () => {
     }, [isScrolled])
 
     return (
-        <div className={`flex justify-around items-center w-full py-3 sticky top-0  bg-white
+        <div className={`flex justify-around items-center w-full py-3 sticky top-0 z-20  bg-white
         ${isScrolled ? "shadow-md " : "shadow-none"}`}>
             <div>
                 <NavLink to="/">

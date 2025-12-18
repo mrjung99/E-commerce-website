@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import product from "../../json/product.json"
-import PopularProductCard from '../PopularProductCard'
 import ProductFilter from "../ui/ProductFilter"
+import ProductCard from "../ui/ProductCard"
 
 const SearchResult = () => {
     const location = useLocation()
@@ -13,9 +13,6 @@ const SearchResult = () => {
     const searchParams = new URLSearchParams(location.search)
     const searchQuery = searchParams.get("q")?.toLowerCase() || ""
     const searchCategory = searchParams.get("category")?.toLowerCase() || ""
-
-    console.log(searchQuery, searchCategory);
-
 
     useEffect(() => {
         const performSearch = () => {
@@ -48,8 +45,6 @@ const SearchResult = () => {
         performSearch()
     }, [searchQuery, searchCategory, location.search])
 
-
-
     return (
         <div className='flex gap-3 w-11/12 mx-auto my-5'>
             <ProductFilter />
@@ -63,7 +58,7 @@ const SearchResult = () => {
                             <p className='text-gray-500 text-2xl'>No such product found!!</p>
                         </div>) : (
                         <div className='grid grid-cols-4 gap-4'>
-                            {searchResult.map(item => <PopularProductCard key={item.id} item={item} />)}
+                            {searchResult.map(item => <ProductCard key={item.id} item={item} />)}
                         </div>)
                 }
             </div>

@@ -7,7 +7,7 @@ import product from "../../json/product.json"
 
 const Search = () => {
     const [searchTerm, setSearchTerm] = useState("")
-    const [selectedCategory, setselectedCategory] = useState("")
+    const [selectedCategory, setselectedCategory] = useState("all")
     const [suggestions, setSuggestions] = useState([])
     const [showSuggestion, setShowSuggestion] = useState(false)
     const navigate = useNavigate()
@@ -76,19 +76,15 @@ const Search = () => {
             if (trimmedQuery) {
                 params.set("q", trimmedQuery)
             }
-            if (category !== "all") {
+            if (category) {
                 params.set("category", category)
             }
-
-            if (trimmedQuery || category !== "all") {
-                navigate(`/search?${params.toString()}`)
-            } else {
-                console.log("No search term or category selected");
-            }
+            navigate(`/search?${params.toString()}`)
+            // setShowSuggestion(false)
+            handleClear()
         } catch (error) {
             console.log("Error in search: ", error);
         }
-
     }, [searchTerm, selectedCategory, navigate])
 
     const handleKeyDown = (e) => {

@@ -3,6 +3,7 @@ import product from "../../json/product.json"
 import PopularProductCard from '../PopularProductCard';
 import { GrPrevious } from "react-icons/gr";
 import { GrNext } from "react-icons/gr";
+import { NavLink } from "react-router-dom";
 
 const Home = () => {
     const boxRef = useRef(null)
@@ -19,8 +20,27 @@ const Home = () => {
     }
 
     return (
-        <section className='p-5 min-h-lvh w-11/12 mx-auto'>
-            <img src="/charles-gao-PfAFNYL-qXY-unsplash.jpg" alt="" className='h-[60vh] w-full object-cover' />
+        <section className='py-5 min-h-lvh w-11/12 mx-auto'>
+            <div className=" h-[60vh] flex items-center justify-center bg-gray-100">
+                <div className="relative flex items-center gap-15 w-9/12">
+                    <div>
+                        <p className="text-[15px] font-thin text-blue-800 leading-0">Welcome to</p>
+                        <h1 className="text-4xl text-gray-800 font-bold leading-15">Sajha Store</h1>
+                        <p className="text-[12px] font-extralight text-gray-700">Quality products for every corner of your life, with prices that make sense.
+                        </p>
+                        <NavLink to="/product">
+                            <button className="bg-orange-500 text-[13px] hover:bg-orange-600 mt-5 
+                        text-gray-100 px-3 py-1 cursor-pointer transition-colors">
+                                Shop Now
+                            </button>
+                        </NavLink>
+                    </div>
+                    <div className="absolute -right-5 -top-5 bg-blue-100 h-[40vh] w-[63vh] "></div>
+                    <div className="z-1">
+                        <img className="w-[70vh] object-cover" src="https://plus.unsplash.com/premium_photo-1661479824677-19535ce314fe?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8ZmFtaWx5JTIwc2hvcHBpbmd8ZW58MHx8MHx8fDA%3D" alt="" />
+                    </div>
+                </div>
+            </div>
             <div className='mt-10'>
                 <h2 className='text-xl my-1'>Popular product</h2>
                 <div className='border border-gray-400 relative'>

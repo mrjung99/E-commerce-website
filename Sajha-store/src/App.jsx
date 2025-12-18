@@ -4,6 +4,7 @@ import Home from "./components/pages/Home";
 import Product from "./components/pages/Product";
 import About from "./components/pages/About";
 import SearchResult from "./components/pages/SearchResult";
+import ProductDetails from "./components/pages/ProductDetails";
 
 const App = () => {
 
@@ -26,6 +27,10 @@ const App = () => {
       {
         path: "/search",
         element: <SearchResult />
+      },
+      {
+        path: "/productDetails/:id",
+        element: <ProductDetails />
       }
     ]
   }

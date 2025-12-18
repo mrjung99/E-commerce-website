@@ -5,12 +5,12 @@ import ProductCard from '../ui/ProductCard'
 
 const Product = () => {
     return (
-        <div className='flex gap-5 my-10'>
+        <div className='flex gap-5 my-10 w-11/12 mx-auto'>
             <ProductFilter />
-            <div className='grid grid-cols-4 gap-5 px-4'>
+            <div className='grid grid-cols-4 gap-4'>
                 {
                     product.map(item => {
-                        return <ProductCard item={item} key={item.id} />
+                        return <ProductCard key={item.id} item={item} />
                     })
                 }
             </div>
