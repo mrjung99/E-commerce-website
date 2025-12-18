@@ -9,7 +9,7 @@ const Right = () => {
                 <FaRegHeart /><span className='text-[11px]'>Wishlist</span>
             </span>
             <span className='flex gap-1 items-center justify-center cursor-pointer'>
-                <IoCartOutline /><span className='text-[11px]'>Cart</span>
+                <IoCartOutline size={20} /><span className='text-[11px]'>Cart</span>
             </span>
             <span className='flex gap-1 items-center justify-center cursor-pointer'>
                 <VscAccount /><span className='text-[11px]'>Account</span>

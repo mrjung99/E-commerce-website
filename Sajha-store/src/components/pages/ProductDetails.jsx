@@ -31,7 +31,7 @@ const ProductDetails = () => {
                     </div>
 
                     <div className='my-3'>
-                        <p className='text-lg text-gray-800 '>Description: </p>
+                        <p className='text-lg text-gray-800 text-[14px] '>Description: </p>
                         <p className='text-gray-700 text-[12px]'>{productDetails.description}</p>
                     </div>
 

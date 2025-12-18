@@ -80,7 +80,7 @@ const Search = () => {
                 params.set("category", category)
             }
             navigate(`/search?${params.toString()}`)
-            // setShowSuggestion(false)
+            setShowSuggestion(false)
             handleClear()
         } catch (error) {
             console.log("Error in search: ", error);

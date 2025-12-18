@@ -29,13 +29,13 @@ const Home = () => {
                         <p className="text-[12px] font-extralight text-gray-700">Quality products for every corner of your life, with prices that make sense.
                         </p>
                         <NavLink to="/product">
-                            <button className="bg-orange-500 text-[13px] hover:bg-orange-600 mt-5 
+                            <button className="bg-orange-600 text-[13px] hover:bg-orange-700 mt-5 
                         text-gray-100 px-3 py-1 cursor-pointer transition-colors">
                                 Shop Now
                             </button>
                         </NavLink>
                     </div>
-                    <div className="absolute -right-5 -top-5 bg-blue-100 h-[40vh] w-[63vh] "></div>
+                    <div className="absolute -right-5 -top-5 bg-blue-100 h-[40vh] w-[63vh] max-h"></div>
                     <div className="z-1">
                         <img className="w-[70vh] object-cover" src="https://plus.unsplash.com/premium_photo-1661479824677-19535ce314fe?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8ZmFtaWx5JTIwc2hvcHBpbmd8ZW58MHx8MHx8fDA%3D" alt="" />
                     </div>
