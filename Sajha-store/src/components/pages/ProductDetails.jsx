@@ -3,10 +3,13 @@ import { useParams } from 'react-router-dom'
 import Product from '../../json/product.json'
 import { IoIosAdd } from "react-icons/io";
 import { RiSubtractLine } from "react-icons/ri";
+import { useCart } from '../../context/CartContext';
 
 const ProductDetails = () => {
     const { id } = useParams()
     const [quantity, setQuantity] = useState(1)
+    const { addToCart, isInCart, updateQuantity } = useCart()
+
 
     const productDetails = Product.find(item => item.id === id)
     console.log(productDetails);
@@ -61,11 +64,13 @@ const ProductDetails = () => {
 
                     <div className='flex gap-4 text-[14px] mt-6'>
                         <button className='bg-blue-600 hover:bg-blue-700 cursor-pointer 
-                        transition-colors text-white px-3 py-1'>
+                            transition-colors text-white px-3 py-1'>
                             Buy Now
                         </button>
                         <button className='bg-orange-600 hover:bg-orange-700 cursor-pointer 
-                        transition-colors text-white px-3 py-1'>
+                            transition-colors text-white px-3 py-1'
+                            onClick={() => addToCart(productDetails, quantity)}
+                        >
                             Add to Cart
                         </button>
                     </div>

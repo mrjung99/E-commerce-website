@@ -5,6 +5,7 @@ import Product from "./components/pages/Product";
 import About from "./components/pages/About";
 import SearchResult from "./components/pages/SearchResult";
 import ProductDetails from "./components/pages/ProductDetails";
+import { CartProvider } from "./context/CartProvider";
 
 const App = () => {
 
@@ -36,7 +37,11 @@ const App = () => {
   }
   ])
 
-  return <RouterProvider router={router}></RouterProvider>;
+  return (
+    <CartProvider>
+      <RouterProvider router={router}></RouterProvider>
+    </CartProvider>
+  );
 };
 
 export default App;
