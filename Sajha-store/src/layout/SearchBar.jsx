@@ -17,11 +17,11 @@ const SearchBar = () => {
     }, [isScrolled])
 
     return (
-        <div className={`flex justify-around items-center w-full py-3 sticky top-0 z-20  bg-white
+        <div className={`flex justify-around items-center w-full py-3 sticky top-0 z-20 bg-gray-50
         ${isScrolled ? "shadow-md " : "shadow-none"}`}>
             <div>
                 <NavLink to="/">
-                    <h1 className='text-lg font-semibold'><span>SAJHA</span><span className='text-orange-600'>STORE</span></h1>
+                    <h1 className='text-xl font-semibold'><span>SAJHA</span><span className='text-orange-600'>STORE</span></h1>
                 </NavLink>
             </div>
             <Search />

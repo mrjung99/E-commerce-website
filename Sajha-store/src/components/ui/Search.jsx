@@ -7,7 +7,7 @@ import product from "../../json/product.json"
 
 const Search = () => {
     const [searchTerm, setSearchTerm] = useState("")
-    const [selectedCategory, setselectedCategory] = useState("all")
+    // const [selectedCategory, setselectedCategory] = useState("all")
     const [suggestions, setSuggestions] = useState([])
     const [showSuggestion, setShowSuggestion] = useState(false)
     const navigate = useNavigate()
@@ -35,14 +35,15 @@ const Search = () => {
                 itemTitle.toLowerCase().includes(query.toLowerCase()) ||
                 itemBrand.toLowerCase().includes(query.toLowerCase())
 
-            const matchCategory = selectedCategory === "all" ||
-                itemCategory.toLowerCase() === selectedCategory.toLowerCase()
+            // const matchCategory = selectedCategory === "all" ||
+            //     itemCategory.toLowerCase() === selectedCategory.toLowerCase()
 
-            return matchText && matchCategory
+            // return matchText && matchCategory
+            return matchText
         })
 
         return filteredProduct.slice(0, 5)
-    }, [selectedCategory])
+    }, [])
 
 
     useEffect(() => {
@@ -67,7 +68,7 @@ const Search = () => {
     }, [getSuggestions, searchTerm])
 
     //handle search method
-    const handleSearch = useCallback((query = searchTerm, category = selectedCategory) => {
+    const handleSearch = useCallback((query = searchTerm, category = "") => {
         try {
             const searchQuery = typeof query === "string" ? query : String(query)
             const trimmedQuery = searchQuery.trim()
@@ -85,7 +86,7 @@ const Search = () => {
         } catch (error) {
             console.log("Error in search: ", error);
         }
-    }, [searchTerm, selectedCategory, navigate])
+    }, [searchTerm, navigate])
 
     const handleKeyDown = (e) => {
         if (e.key === "Enter") {
@@ -94,15 +95,15 @@ const Search = () => {
         }
     }
 
-    const handleCategoryChanage = (e) => {
-        const newCategory = e.target.value || "all"
-        setselectedCategory(newCategory)
-        setTimeout(() => {
-            handleSearch(searchTerm, newCategory)
-        }, 0);
-        setSuggestions([])
-        setShowSuggestion(false)
-    }
+    // const handleCategoryChanage = (e) => {
+    //     const newCategory = e.target.value || "all"
+    //     setselectedCategory(newCategory)
+    //     setTimeout(() => {
+    //         handleSearch(searchTerm, newCategory)
+    //     }, 0);
+    //     setSuggestions([])
+    //     setShowSuggestion(false)
+    // }
 
     const handleSuggestionClick = (item) => {
         const query = item.name || item.category || ''
@@ -124,9 +125,9 @@ const Search = () => {
 
 
     return (
-        <div ref={searchRef} className='relative border border-green-400 py-1 px-3 flex items-center 
-            justify-center gap-2 w-lvh'>
-            <select name="category" id="" className='outline-0 bg-gray-100 rounded p-2 text-[11px] cursor-pointer'
+        <div ref={searchRef} className='relative font-sans font-thin py-2 flex items-center 
+            justify-center w-lvh'>
+            {/* <select name="category" id="" className='outline-0 bg-gray-white rounded p-2 text-[13px]  cursor-pointer'
                 value={selectedCategory}
                 onChange={handleCategoryChanage}
             >
@@ -136,11 +137,12 @@ const Search = () => {
                 <option value="sports">Sports</option>
                 <option value="clothing">Clothing</option>
                 <option value="healthandbeauty">Health and Beauty</option>
-            </select>
+            </select> */}
 
-            <div className="input-wrapper py-0.5">
-                <input type="text" placeholder='Search for product' className=' text-[11px] 
-                    text-gray-800 p-2 outline-0 w-full bg-gray-100 rounded'
+            <div className="w-10/12 flex items-stretch">
+                <input type="text" placeholder='Search for product...'
+                    className='text-[15px] py-2 px-4  w-full bg-white outline-0 border border-orange-600 rounded-l-full 
+                    focus:shadow-[inset_0_0_5px_rgba(249,115,22,0.4)]'
                     value={searchTerm}
                     onChange={(e) => {
                         setSearchTerm(e.target.value)
@@ -153,23 +155,26 @@ const Search = () => {
                     }}
                     onKeyDown={handleKeyDown}
                 />
+                <button className='cursor-pointer text-[14px] text-white border border-orange-600 bg-orange-600 
+                rounded-r-full px-4 py-1'
+                    onClick={() => handleSearch()}>
+                    <CiSearch size={25} />
+                </button>
             </div>
             {
-                searchTerm && <MdClear size={20} className='absolute right-11 cursor-pointer 
-                    hover:bg-gray-800 hover:rounded-full hover:text-white' onClick={handleClear} />
+                searchTerm && <MdClear size={25} className='absolute text-gray-800 right-28 cursor-pointer 
+                                hover:bg-[rgba(0,0,0,0.2)] hover:rounded-full'
+                    onClick={handleClear} />
             }
-            <button className='absolute right-5 cursor-pointer z-50' onClick={() => handleSearch()}>
-                <CiSearch size={20} />
-            </button>
 
             {showSuggestion && suggestions.length > 0 && (
-                <div className='absolute mt-1 top-full left-1/4 right-0 z-50 bg-white border-gray-100 shadow-lg rounded-md'>
+                <div className='absolute w-10/12 mx-auto mt-1 top-[90%] left-0 right-0 z-50 bg-white border-gray-100 shadow-lg rounded-md '>
                     {
                         suggestions.map(item => (
                             <div key={item.id} onClick={() => handleSuggestionClick(item)} className='p-2 hover:bg-gray-100 cursor-pointer border-b
-                                border-gray-100 last:border-b-0'>
-                                <p className='text-[11px] font-medium'>
-                                    {item.name}
+                                border-gray-100 last:border-b-0 font-sans font-thin'>
+                                <p className='text-[14px]'>
+                                    {item.name.charAt(0).toUpperCase() + item.name.slice(1)}
                                 </p>
                             </div>
                         ))

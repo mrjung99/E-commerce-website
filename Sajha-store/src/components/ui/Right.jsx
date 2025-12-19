@@ -7,13 +7,13 @@ const Right = () => {
     return (
         <div className='flex items-center justify-center gap-5'>
             <span className='flex gap-1 items-center justify-center cursor-pointer'>
-                <FaRegHeart /><span className='text-[11px]'>Wishlist</span>
+                <CartIcon /><span className='text-[11px]'></span>
             </span>
             <span className='flex gap-1 items-center justify-center cursor-pointer'>
-                <CartIcon /><span className='text-[11px]'>Cart</span>
+                <FaRegHeart size={21} className="text-gray-800" /><span className='text-[11px]'></span>
             </span>
             <span className='flex gap-1 items-center justify-center cursor-pointer'>
-                <VscAccount /><span className='text-[11px]'>Account</span>
+                <VscAccount size={21} className="text-gray-800" /><span className='text-[11px]'></span>
             </span>
         </div>
     )

@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { NavLink, useParams } from 'react-router-dom'
 import Product from '../../json/product.json'
 import { IoIosAdd } from "react-icons/io";
 import { RiSubtractLine } from "react-icons/ri";
+import { FiArrowLeft } from "react-icons/fi";
 import { useCart } from '../../context/CartContext';
 
 const ProductDetails = () => {
@@ -34,12 +35,12 @@ const ProductDetails = () => {
                     </div>
 
                     <div className='my-3'>
-                        <p className='text-lg text-gray-800 text-[14px] '>Description: </p>
-                        <p className='text-gray-700 text-[12px]'>{productDetails.description}</p>
+                        <p className='text-lg text-gray-800 text-[15px] font-sans'>Description: </p>
+                        <p className='text-[15px] font-sans font-thin'>{productDetails.description}</p>
                     </div>
 
-                    <p className='text-gray-600 text-[12px]'>Brand: <span className='text-blue-600'>{productDetails.brand.charAt(0).toUpperCase() + productDetails.brand.slice(1)}</span></p>
-                    <p className='text-orange-600 text-2xl font-mono'>{productDetails.price}</p>
+                    <p className='text-gray-600 text-[14px] font-sans'>Brand: <span className='text-blue-600'>{productDetails.brand.charAt(0).toUpperCase() + productDetails.brand.slice(1)}</span></p>
+                    <p className='text-orange-600 text-2xl font-sans mt-3'>Rs.{productDetails.price}</p>
 
                     <div className='flex gap-5 items-center justify-center mt-7 text-[12px]'>
                         <p>Quantity: </p>
@@ -74,12 +75,16 @@ const ProductDetails = () => {
                             Add to Cart
                         </button>
                     </div>
+                    <NavLink to="/product">
+                        <p className='flex gap-2 items-center mt-3 text-blue-500 hover:text-blue-800 
+                    cursor-pointer transition-colors duration-300'><FiArrowLeft />Continue Shopping</p>
+                    </NavLink>
                 </div>
             </div>
 
             <div className='bg-gray-100 p-3 mt-8'>
                 <p className='text-2xl text-gray-800'>Product Details of {productDetails.name}</p>
-                <p className='border border-gray-300 text-[12px] text-gray-700 p-2'>{productDetails.description}</p>
+                <p className='border border-gray-300 text-[15px] p-2 font-sans font-thin mt-2'>{productDetails.description}</p>
             </div>
         </section>
     )

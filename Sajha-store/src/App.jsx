@@ -7,6 +7,7 @@ import SearchResult from "./components/pages/SearchResult";
 import ProductDetails from "./components/pages/ProductDetails";
 import { CartProvider } from "./context/CartProvider";
 import Cart from "./components/pages/Cart";
+import Checkout from "./components/pages/Checkout";
 
 const App = () => {
 
@@ -37,6 +38,10 @@ const App = () => {
       {
         path: "/cart",
         element: <Cart />
+      },
+      {
+        path: "/checkout",
+        element: <Checkout />
       }
     ]
   }
