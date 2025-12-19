@@ -8,6 +8,8 @@ import ProductDetails from "./components/pages/ProductDetails";
 import { CartProvider } from "./context/CartProvider";
 import Cart from "./components/pages/Cart";
 import Checkout from "./components/pages/Checkout";
+import Wishlist from "./components/pages/Wishlist";
+import { WishListProvider } from "./context/WishListProvider";
 
 const App = () => {
 
@@ -42,15 +44,21 @@ const App = () => {
       {
         path: "/checkout",
         element: <Checkout />
+      },
+      {
+        path: "/wishlist",
+        element: <Wishlist />
       }
     ]
   }
   ])
 
   return (
-    <CartProvider>
-      <RouterProvider router={router}></RouterProvider>
-    </CartProvider>
+    <WishListProvider>
+      <CartProvider>
+        <RouterProvider router={router}></RouterProvider>
+      </CartProvider>
+    </WishListProvider>
   );
 };
 
