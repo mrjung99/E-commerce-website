@@ -24,9 +24,9 @@ const Home = () => {
             <div className=" h-[60vh] flex items-center justify-center bg-gray-100">
                 <div className="relative flex items-center gap-15 w-9/12">
                     <div>
-                        <p className="text-[15px] font-thin text-blue-800 leading-0">Welcome to</p>
-                        <h1 className="text-4xl text-gray-800 font-bold leading-15">Sajha Store</h1>
-                        <p className="text-[12px] font-extralight text-gray-700">Quality products for every corner of your life, with prices that make sense.
+                        <p className="text-[15px] text-blue-800 font-sans leading-0">Welcome to</p>
+                        <h1 className="text-5xl text-gray-800 font-bold leading-15 font-sans">Sajha Store</h1>
+                        <p className="text-[16px] font-light text-gray-800 font-sans">Quality products for every corner of your life, with prices that make sense.
                         </p>
                         <NavLink to="/product">
                             <button className="bg-orange-600 text-[13px] hover:bg-orange-700 mt-5 

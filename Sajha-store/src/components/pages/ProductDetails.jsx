@@ -8,7 +8,7 @@ import { useCart } from '../../context/CartContext';
 const ProductDetails = () => {
     const { id } = useParams()
     const [quantity, setQuantity] = useState(1)
-    const { addToCart, isInCart, updateQuantity } = useCart()
+    const { addToCart } = useCart()
 
 
     const productDetails = Product.find(item => item.id === id)

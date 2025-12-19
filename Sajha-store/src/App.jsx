@@ -6,6 +6,7 @@ import About from "./components/pages/About";
 import SearchResult from "./components/pages/SearchResult";
 import ProductDetails from "./components/pages/ProductDetails";
 import { CartProvider } from "./context/CartProvider";
+import Cart from "./components/pages/Cart";
 
 const App = () => {
 
@@ -32,6 +33,10 @@ const App = () => {
       {
         path: "/productDetails/:id",
         element: <ProductDetails />
+      },
+      {
+        path: "/cart",
+        element: <Cart />
       }
     ]
   }
