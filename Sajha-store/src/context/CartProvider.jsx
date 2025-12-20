@@ -6,7 +6,7 @@ import { CartContext } from "./CartContext";
 export const CartProvider = ({ children }) => {
     const [cartItem, setCartItem] = useState(() => {
         const savedCart = localStorage.getItem("cart")
-        return savedCart ? JSON.parse(savedCart) : []
+        return savedCart ? JSON.parse(savedCart) : 0
     })
 
     useEffect(() => {
@@ -45,7 +45,7 @@ export const CartProvider = ({ children }) => {
 
     // clear cart
     const clearCart = () => {
-        setCartItem([])
+        setCartItem(0)
     }
 
     //! update quantity

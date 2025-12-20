@@ -46,7 +46,7 @@ const SearchResult = () => {
     }, [searchQuery, searchCategory, location.search])
 
     return (
-        <div className='flex gap-3 w-11/12 mx-auto my-5'>
+        <div className='flex gap-3 w-11/12 min-h-screen mx-auto my-5'>
             <ProductFilter />
             <div className='flex-1 justify-center items-center'>
                 {loading ? (

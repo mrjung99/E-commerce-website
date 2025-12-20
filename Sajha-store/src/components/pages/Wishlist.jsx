@@ -1,14 +1,52 @@
 import React from 'react'
 import { useWishList } from '../../context/WishListContext'
 import ProductCard from '../ui/ProductCard';
+import { LuHeartOff } from "react-icons/lu";
+import { FiArrowLeft } from 'react-icons/fi';
+
+import { NavLink } from 'react-router-dom';
+
 
 const Wishlist = () => {
-    const { wishList } = useWishList()
-    console.log(wishList);
+    const { wishList, totalWishListItem, clearWishList } = useWishList()
+    const totalWishList = totalWishListItem()
+
+    if (totalWishList <= 0) {
+        return (
+            <div className="min-h-[80vh] flex flex-col items-center justify-center">
+                <LuHeartOff className="text-8xl text-gray-300 mb-6" />
+                <h1 className="text-xl font-bold text-gray-700 mb-4">Your wishlist is empty</h1>
+                <p className="text-gray-500 mb-8 text-sm text-center max-w-md">
+                    Save items you love for later. Click the heart icon on any product.
+                </p>
+                <NavLink
+                    to="/product"
+                    className="px-8 py-3 bg-orange-600 text-white text-sm rounded-lg hover:bg-orange-700 flex items-center gap-2"
+                >
+                    <FiArrowLeft />
+                    Start Shopping
+                </NavLink>
+            </div>
+        )
+    }
 
     return (
-        <div className='flex gap-5 my-10 w-11/12 mx-auto'>
-            <div className='grid grid-cols-4 gap-4'>
+        <div className='flex flex-col gap-5 mb-10 w-11/12 mt-4 mx-auto min-h-screen'>
+            <div className='flex justify-between mb-4'>
+                <h1 className='text-[20px] text-gray-800'>My Wishlist <span className='text-sm text-gray-700 font-sans'>({`${totalWishList} item${totalWishList > 1 ? "'s" : ""}`})</span></h1>
+                <div className='flex gap-10'>
+                    <span className='flex items-center gap-1 text-blue-500 font-sans cursor-pointer
+                    hover:text-blue-600 transition-all duration-300'>
+                        <FiArrowLeft /><span>Continue Shopping</span></span>
+                    <button className='border border-red-500 px-3 py-1 rounded text-red-500 text-sm
+                    cursor-pointer hover:bg-red-50 transition-colors duration-300'
+                        onClick={() => clearWishList()}>
+                        Clear Wishlist
+                    </button>
+                </div>
+            </div>
+
+            <div className='grid grid-cols-4 gap-5'>
                 {
                     wishList.map(item => {
                         return <ProductCard item={item} />

@@ -3,16 +3,21 @@ import { NavLink, useParams } from 'react-router-dom'
 import Product from '../../json/product.json'
 import { IoIosAdd } from "react-icons/io";
 import { RiSubtractLine } from "react-icons/ri";
-import { FiArrowLeft } from "react-icons/fi";
+import { FiArrowLeft, FiHeart } from "react-icons/fi";
 import { useCart } from '../../context/CartContext';
+import { useWishList } from '../../context/WishListContext';
+
 
 const ProductDetails = () => {
     const { id } = useParams()
     const [quantity, setQuantity] = useState(1)
     const { addToCart } = useCart()
+    const { toggleWishList, isInWishList } = useWishList()
 
 
     const productDetails = Product.find(item => item.id === id)
+    const inWishList = isInWishList(productDetails.id)
+
     console.log(productDetails);
 
     const handleQuantityChange = (e) => {
@@ -63,17 +68,20 @@ const ProductDetails = () => {
                         </div>
                     </div>
 
-                    <div className='flex gap-4 text-[14px] mt-6'>
+                    <div className='flex items-center gap-4 text-[14px] mt-6'>
                         <button className='bg-blue-600 hover:bg-blue-700 cursor-pointer 
-                            transition-colors text-white px-3 py-1'>
+                            transition-colors text-white px-3 py-1 rounded'>
                             Buy Now
                         </button>
                         <button className='bg-orange-600 hover:bg-orange-700 cursor-pointer 
-                            transition-colors text-white px-3 py-1'
+                            transition-colors text-white px-3 py-1 rounded'
                             onClick={() => addToCart(productDetails, quantity)}
                         >
                             Add to Cart
                         </button>
+                        <FiHeart size={28}
+                            className={`${inWishList ? "text-red-500 hover:text-gray-500" : "text-gray-500 hover:text-red-500"} fill-current cursor-pointer`}
+                            onClick={() => toggleWishList(productDetails)} />
                     </div>
                     <NavLink to="/product">
                         <p className='flex gap-2 items-center mt-3 text-blue-500 hover:text-blue-800 
