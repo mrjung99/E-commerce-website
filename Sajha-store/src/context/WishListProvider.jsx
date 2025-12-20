@@ -5,7 +5,7 @@ export const WishListProvider = ({ children }) => {
 
     const [wishList, setWishList] = useState(() => {
         const saved = localStorage.getItem("wishList")
-        return saved ? JSON.parse(saved) : 0
+        return saved ? JSON.parse(saved) : []
     })
 
     useEffect(() => {

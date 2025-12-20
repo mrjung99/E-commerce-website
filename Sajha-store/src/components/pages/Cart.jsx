@@ -115,8 +115,8 @@ const Cart = () => {
                         </div>
                     </div>
 
-                    <div className='lg:w-1/3'>
-                        <div className='bg-white shadow-[0_0_1px_rgba(0,0,0,0.5)] rounded-lg px-6 py-4 sticky top-20'>
+                    <div className='lg:w-1/3 min-h-screen'>
+                        <div className='bg-white shadow-[0_0_1px_rgba(0,0,0,0.5)] rounded-lg px-6 py-4 sticky top-22'>
                             <h2 className='text-[20px] mb-4 text-gray-800'>Order Summary</h2>
                             <div className='space-y-3 font-sans font-light'>
                                 <div className='flex justify-between'>

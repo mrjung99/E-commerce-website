@@ -1,9 +1,9 @@
 import { useRef } from "react";
 import product from "../../json/product.json"
-import PopularProductCard from '../PopularProductCard';
 import { GrPrevious } from "react-icons/gr";
 import { GrNext } from "react-icons/gr";
 import { NavLink } from "react-router-dom";
+import ProductCard from "../ui/ProductCard";
 
 const Home = () => {
     const boxRef = useRef(null)
@@ -29,7 +29,7 @@ const Home = () => {
                         <p className="text-[16px] font-light font-sans">Quality products for every corner of your life, with prices that make sense.
                         </p>
                         <NavLink to="/product">
-                            <button className="bg-orange-600 text-[13px] hover:bg-orange-700 mt-5 
+                            <button className="bg-orange-600 text-[15px] hover:bg-orange-700 mt-5 
                         text-gray-100 px-3 py-1 cursor-pointer transition-colors rounded">
                                 Shop Now
                             </button>
@@ -44,7 +44,7 @@ const Home = () => {
             <div className='mt-10'>
                 <h2 className='text-xl my-1 font-sans text-gray-800 mb-2'>Popular product</h2>
                 <div className='border border-gray-300 relative'>
-                    <button className=' absolute z-60 top-1/2 -translate-y-1/2 left-0  flex justify-center 
+                    <button className=' absolute z-30 top-1/2 -translate-y-1/2 left-0  flex justify-center 
                         items-center bg-[rgba(0,0,0,0.4)] hover:bg-[rgba(0,0,0,0.6)] p-1 rounded-full
                         text-white h-[42px] w-[42px] cursor-pointer'
                         onClick={handlePrev}>
@@ -59,7 +59,7 @@ const Home = () => {
 
                     <div ref={boxRef} className='flex gap-3 overflow-x-hidden p-3 scroll-smooth bg-white'>
                         {product.filter(product => product.rating >= 3).map(item => {
-                            return <PopularProductCard key={item.id} item={item} />
+                            return <ProductCard key={item.id} item={item} />
                         })}
                     </div>
                 </div>

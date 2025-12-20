@@ -17,7 +17,7 @@ const HeartIcon = ({ item }) => {
     return (
         <div>
             <button className={`${isInList ? "text-red-500 hover:text-gray-300" : "text-gray-300 hover:text-red-500"}`} title={isInList ? "Remove from wishlist" : "Add to wishlist"}>
-                <FiHeart size={23} className='fill-current cursor-pointer' onClick={handleHeartClick} />
+                <FiHeart size={25} className='fill-current cursor-pointer' onClick={handleHeartClick} />
             </button>
         </div>
     )

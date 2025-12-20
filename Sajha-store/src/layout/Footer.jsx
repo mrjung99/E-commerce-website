@@ -8,22 +8,22 @@ const Footer = () => {
                 <div className='col-span-4 flex flex-col gap-3 p-8'>
                     <h2 className='font-sans text-sm text-orange-100'>Help customers</h2>
                     <div className='space-y-4 font-sans font-thin'>
-                        <p className='text-[12px]'>Find a location nearest you to reduce shipping costs and make shopping easier. Show on google maps.</p>
-                        <div className='flex flex-col text-[12px]'>
+                        <p className='text-[13px]'>Find a location nearest you to reduce shipping costs and make shopping easier. Show on google maps.</p>
+                        <div className='flex flex-col text-[13px]'>
                             <span>+977-9877876842</span>
                             <span>info@sajhastore.com</span>
                         </div>
                         <div className='flex gap-3 text-gray-300'>
-                            <div className='cursor-pointer outline outline-gray-200 hover:outline-orange-400 transition-all duration-300 rounded-full p-1.5'>
+                            <div className='cursor-pointer outline hover:text-orange-500 outline-gray-200 hover:outline-orange-400 transition-all duration-300 rounded-full p-1.5'>
                                 <FaFacebook />
                             </div>
-                            <div className='cursor-pointer outline outline-gray-200 hover:outline-orange-400 transition-all duration-300 rounded-full p-1.5'>
+                            <div className='cursor-pointer outline hover:text-orange-500 outline-gray-200 hover:outline-orange-400 transition-all duration-300 rounded-full p-1.5'>
                                 <FaTiktok />
                             </div>
-                            <div className='cursor-pointer outline outline-gray-200 hover:outline-orange-400 transition-all duration-300 rounded-full p-1.5'>
+                            <div className='cursor-pointer outline hover:text-orange-500 outline-gray-200 hover:outline-orange-400 transition-all duration-300 rounded-full p-1.5'>
                                 <FaInstagram />
                             </div>
-                            <div className='cursor-pointer outline outline-gray-200 hover:outline-orange-400 transition-all duration-300 rounded-full p-1.5'>
+                            <div className='cursor-pointer outline hover:text-orange-500 outline-gray-200 hover:outline-orange-400 transition-all duration-300 rounded-full p-1.5'>
                                 <FaYoutube />
                             </div>
                         </div>
@@ -31,7 +31,7 @@ const Footer = () => {
                 </div>
                 <div className='col-span-2 space-y-3 font-sans p-8'>
                     <h2 className='text-sm text-orange-100'>Our Company</h2>
-                    <div className='font-thin text-[12px] flex flex-col'>
+                    <div className='font-thin text-[13px] flex flex-col'>
                         <span className='cursor-pointer hover:text-orange-400 w-fit'>About Us</span>
                         <span className='cursor-pointer hover:text-orange-400 w-fit'>Contact Us</span>
                         <span className='cursor-pointer hover:text-orange-400 w-fit'>Sale</span>
@@ -42,7 +42,7 @@ const Footer = () => {
                 </div>
                 <div className='col-span-2 space-y-3 font-sans p-8'>
                     <h2 className='text-sm text-orange-100'>Shop Categories</h2>
-                    <div className='text-[12px] font-thin flex flex-col'>
+                    <div className='text-[13px] font-thin flex flex-col'>
                         <span className='cursor-pointer hover:text-orange-400 w-fit'>Hot Deals</span>
                         <span className='cursor-pointer hover:text-orange-400 w-fit'>Best Seller</span>
                         <span className='cursor-pointer hover:text-orange-400 w-fit'>Sale & Special Offers</span>
@@ -87,7 +87,7 @@ const Footer = () => {
                             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKOfwmcx10XZsVfYJ_by52ETThjY4wVvoieQ&s" alt="PayPal" className="h-6" />
                         </div>
                     </div>
-                    <div className='flex gap-3 font-sans font-thin text-[12px]'>
+                    <div className='flex gap-3 font-sans font-thin text-[13px]'>
                         <span className='hover:text-orange-400 cursor-pointer transition-all duration-300'>Refund policy</span>
                         <span className='hover:text-orange-400 cursor-pointer transition-all duration-300'>Privacy policy</span>
                         <span className='hover:text-orange-400 cursor-pointer transition-all duration-300'>Terms of service</span>

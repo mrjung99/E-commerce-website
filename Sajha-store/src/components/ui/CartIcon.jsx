@@ -6,6 +6,7 @@ import { NavLink } from 'react-router-dom';
 const CartIcon = () => {
     const { getTotalCartItem } = useCart()
     const cartItem = getTotalCartItem()
+
     return (
         <div className='relative'>
             <NavLink to="/cart">
