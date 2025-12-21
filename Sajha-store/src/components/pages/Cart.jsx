@@ -19,6 +19,13 @@ const Cart = () => {
     const tax = (totalPrice * 0.13).toFixed(2); // 13% tax
     const grandTotal = (parseFloat(totalPrice) + parseFloat(tax) + shipping).toFixed(2);
 
+    const truncateLongName = (productName) => {
+        if (productName.length > 50) {
+            return `${productName.slice(0, 50)}...`
+        } else {
+            return productName
+        }
+    }
     if (cartItem.length === 0) {
         return (
             <div className="min-h-[81vh] flex flex-col items-center justify-center">
@@ -63,8 +70,14 @@ const Cart = () => {
                                     cartItem.map(item => (
                                         <div key={item.id} className='grid grid-cols-12'>
                                             <div className='col-span-5 flex items-center gap-4 p-2'>
-                                                <img src={item.image} alt={item.name} className='w-10 h-10 rounded-lg object-cover' />
-                                                <p className='text-[14px] font-sans font-light'>{item.name.charAt(0).toUpperCase() + item.name.slice(1)}</p>
+                                                <img src={item.image} alt={item.name} className='shrink-0 w-10 h-10 rounded-lg object-cover' />
+                                                <NavLink to={`/productDetails/${item.id}`}>
+                                                    <p className='text-[15px] font-sans 
+                                                    font-light cursor-pointer hover:text-orange-600 
+                                                    transition-colors duration-300 ease-in-out'>
+                                                        {truncateLongName(item.name.charAt(0).toUpperCase() + item.name.slice(1))}
+                                                    </p>
+                                                </NavLink>
                                             </div>
 
                                             <div className='col-span-2 flex items-center justify-center gap-3'>
@@ -74,7 +87,7 @@ const Cart = () => {
                                                 >
                                                     <FiMinus />
                                                 </button>
-                                                <span className='text-[13px] font-sans font-light'>{item.quantity}</span>
+                                                <span className='text-[14px] font-sans font-light'>{item.quantity}</span>
                                                 <button className='cursor-pointer bg-gray-200'
                                                     onClick={() => updateQuantity(item.id, item.quantity + 1)}
                                                 >

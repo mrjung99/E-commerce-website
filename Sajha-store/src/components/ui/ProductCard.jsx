@@ -18,9 +18,10 @@ const ProductCard = ({ item }) => {
     const name = item.name.charAt(0).toUpperCase() + item.name.slice(1)
 
     return (
-        <div key={item.id} className='min-w-[200px] h-full outline outline-gray-200
-        hover:outline-gray-400 hover:bg-gray-200 hover:shadow-[0_0_2px_rgba(0,0,0,0.5)] p-2 
-        rounded transition-all duration-300 relative'>
+        <div key={item.id} className='min-w-[200px] h-full bg-white hover:outline-gray-400 
+        hover:bg-gray-100 hover:scale-103 shadow-[0_0_1px_rgba(0,0,0,0.5)] 
+        hover:shadow-[0_0_8px_rgba(0,0,0,0.3)] p-2 rounded transition-all duration-300 
+        ease relative'>
             <div className="absolute right-3 top-2 z-10">
                 <HeartIcon item={item} />
             </div>

@@ -31,13 +31,16 @@ const Wishlist = () => {
     }
 
     return (
-        <div className='flex flex-col gap-5 mb-10 w-11/12 mt-4 mx-auto min-h-screen'>
+        <div className='flex flex-col gap-5 mb-10 w-10/12 mt-4 mx-auto min-h-screen'>
             <div className='flex justify-between mb-4'>
                 <h1 className='text-[20px] text-gray-800'>My Wishlist <span className='text-sm text-gray-700 font-sans'>({`${totalWishList} item${totalWishList > 1 ? "'s" : ""}`})</span></h1>
                 <div className='flex gap-10'>
-                    <span className='flex items-center gap-1 text-blue-500 font-sans cursor-pointer
+                    <NavLink to="/product">
+                        <span className='flex items-center gap-1 text-blue-500 font-sans cursor-pointer
                     hover:text-blue-600 transition-all duration-300'>
-                        <FiArrowLeft /><span>Continue Shopping</span></span>
+                            <FiArrowLeft /><span>Continue Shopping</span>
+                        </span>
+                    </NavLink>
                     <button className='border border-red-500 px-3 py-1 rounded text-red-500 text-sm
                     cursor-pointer hover:bg-red-50 transition-colors duration-300'
                         onClick={() => clearWishList()}>

@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import product from "../../json/product.json"
-import { GrPrevious } from "react-icons/gr";
-import { GrNext } from "react-icons/gr";
+import { GrPrevious, GrNext } from "react-icons/gr";
+import { FaShoppingBag } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import ProductCard from "../ui/ProductCard";
 
@@ -21,17 +21,18 @@ const Home = () => {
 
     return (
         <section className='py-5 min-h-lvh w-11/12 mx-auto mb-12'>
-            <div className=" h-[60vh] flex items-center justify-center bg-gray-100">
-                <div className="relative flex items-center gap-15 w-9/12">
-                    <div>
+            <div className=" h-[60vh] flex items-center justify-center bg-gray-100 rounded">
+                <div className="relative flex items-center gap-15 w-10/12">
+                    <div className="">
                         <p className="text-[15px] text-blue-800 font-sans leading-0">Welcome to</p>
                         <h1 className="text-5xl text-gray-800 font-bold leading-15 font-sans">Sajha Store</h1>
                         <p className="text-[16px] font-light font-sans">Quality products for every corner of your life, with prices that make sense.
                         </p>
                         <NavLink to="/product">
                             <button className="bg-orange-600 text-[15px] hover:bg-orange-700 mt-5 
-                        text-gray-100 px-3 py-1 cursor-pointer transition-colors rounded">
-                                Shop Now
+                        text-gray-100 px-3 py-1.5 cursor-pointer transition-colors duration-300 ease-in 
+                        rounded flex items-center gap-2">
+                                <FaShoppingBag size={18} /> Shop Now
                             </button>
                         </NavLink>
                     </div>
@@ -43,7 +44,7 @@ const Home = () => {
             </div>
             <div className='mt-10'>
                 <h2 className='text-xl my-1 font-sans text-gray-800 mb-2'>Popular product</h2>
-                <div className='border border-gray-300 relative'>
+                <div className=' shadow-[0_0_2px_rgba(0,0,0,0.3)] rounded relative'>
                     <button className=' absolute z-30 top-1/2 -translate-y-1/2 left-0  flex justify-center 
                         items-center bg-[rgba(0,0,0,0.4)] hover:bg-[rgba(0,0,0,0.6)] p-1 rounded-full
                         text-white h-[42px] w-[42px] cursor-pointer'
