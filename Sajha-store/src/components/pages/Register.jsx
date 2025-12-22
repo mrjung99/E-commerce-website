@@ -13,15 +13,15 @@ const Register = () => {
 
     return (
         <div className='px-4 py-2 md:px-6 md:py-4'>
-            <div className='bg-white shadow-[0_0_1px_rgba(0,0,0,0.5)] w-full max-w-6xl mx-auto mb-8 px-4 md:px-8 py-6 md:py-8 rounded'>
-                <h1 className='text-xl md:text-2xl text-gray-800 mb-6 text-center md:text-left'>Create your Account</h1>
+            <div className='bg-white shadow-[0_0_1px_rgba(0,0,0,0.5)] w-full max-w-6xl mx-auto mb-8 px-4 md:px-8 py-4 md:py-6 rounded'>
+                <h1 className='text-xl md:text-2xl text-gray-800 mb-4 text-center md:text-left'>Create your Account</h1>
 
-                <form className='flex flex-col space-y-5'>
+                <form className='flex flex-col space-y-3'>
                     {/* Main form grid with equal columns */}
-                    <div className='grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8'>
+                    <div className='grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-8'>
 
                         {/* Personal Information - Equal width */}
-                        <div className='lg:col-span-5 space-y-3 md:space-y-3'>
+                        <div className='lg:col-span-5 space-y-2 md:space-y-3'>
                             <h2 className='text-orange-500 text-sm md:text-lg font-medium'>Personal Information</h2>
 
                             {/* First & Last Name */}

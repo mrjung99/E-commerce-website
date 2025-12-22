@@ -6,7 +6,7 @@ const Footer = () => {
         <section className=' bg-gray-800 text-gray-100'>
             <div className='grid grid-cols-12 gap-4 justify-between p-4'>
                 <div className='col-span-4 flex flex-col gap-3 p-8'>
-                    <h2 className='font-sans text-sm text-orange-100'>Help customers</h2>
+                    <h2 className='font-sans text-sm text-orange-50'>Help customers</h2>
                     <div className='space-y-4 font-sans font-thin'>
                         <p className='text-[13px]'>Find a location nearest you to reduce shipping costs and make shopping easier. Show on google maps.</p>
                         <div className='flex flex-col text-[13px]'>
@@ -30,7 +30,7 @@ const Footer = () => {
                     </div>
                 </div>
                 <div className='col-span-2 space-y-3 font-sans p-8'>
-                    <h2 className='text-sm text-orange-100'>Our Company</h2>
+                    <h2 className='text-sm text-orange-50'>Our Company</h2>
                     <div className='font-thin text-[13px] flex flex-col'>
                         <span className='cursor-pointer hover:text-orange-400 w-fit'>About Us</span>
                         <span className='cursor-pointer hover:text-orange-400 w-fit'>Contact Us</span>
@@ -41,7 +41,7 @@ const Footer = () => {
                     </div>
                 </div>
                 <div className='col-span-2 space-y-3 font-sans p-8'>
-                    <h2 className='text-sm text-orange-100'>Shop Categories</h2>
+                    <h2 className='text-sm text-orange-50'>Shop Categories</h2>
                     <div className='text-[13px] font-thin flex flex-col'>
                         <span className='cursor-pointer hover:text-orange-400 w-fit'>Hot Deals</span>
                         <span className='cursor-pointer hover:text-orange-400 w-fit'>Best Seller</span>
@@ -52,13 +52,13 @@ const Footer = () => {
                     </div>
                 </div>
                 <div className='col-span-4 font-sans space-y-3 p-8'>
-                    <h2 className='text-sm text-orange-100'>Sign Up to Newsletter</h2>
+                    <h2 className='text-sm text-orange-50'>Sign Up to Newsletter</h2>
                     <p className='text-[13px] font-thin'>Sign up for 10% off your first purchase plus free shipping.</p>
                     <div className='flex gap-2'>
                         <input type="text" placeholder='Enter your email...' className='grow bg-gray-200 text-gray-800 
                         px-3 py-1.5 text-[13px] font-thin rounded outline-0' />
-                        <button className='bg-orange-600 rounded cursor-pointer px-3 py-1 font-thin text-sm 
-                        hover:bg-orange-700'>Sign Up</button>
+                        <button className='bg-orange-600 rounded cursor-pointer px-3 py-1 text-sm 
+                        hover:bg-orange-500'>Sign Up</button>
                     </div>
                     <p className='font-thin text-[13px]'>By entering the e-mail you accept the terms and condittions and the privacy policy.</p>
                 </div>
@@ -69,7 +69,7 @@ const Footer = () => {
                     <PiCopyrightThin /><p className='font-thin text-[12px]'>2025 SAJHA store. All rights reserved.</p>
                 </div>
                 <div className='flex flex-col gap-3'>
-                    <p className='text-sm text-orange-100'>We Accept:</p>
+                    <p className='text-sm text-orange-50'>We Accept:</p>
                     <div className='flex gap-2'>
                         <div className="p-2 border rounded bg-white">
                             <img src="https://cdn-icons-png.flaticon.com/128/196/196578.png" alt="Visa" className="h-6" />

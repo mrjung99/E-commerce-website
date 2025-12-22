@@ -29,7 +29,7 @@ const Home = () => {
                         <p className="text-[16px] font-light font-sans">Quality products for every corner of your life, with prices that make sense.
                         </p>
                         <NavLink to="/product">
-                            <button className="bg-orange-600 text-[15px] hover:bg-orange-700 mt-5 
+                            <button className="bg-orange-600 text-[15px] hover:bg-orange-500 mt-5 
                         text-gray-100 px-3 py-1.5 cursor-pointer transition-colors duration-300 ease-in 
                         rounded flex items-center gap-2">
                                 <FaShoppingBag size={18} /> Shop Now

@@ -7,7 +7,7 @@ const ProductFilter = () => {
 
     }
     return (
-        <section className='border-r border-gray-200 bg-gray-50 '>
+        <section className='border-r border-gray-200 bg-gray-50 px-4'>
             <div className='mb-3 px-2'>
                 <h1 className='text-sm text-gray-800'>Category</h1>
                 <ul className='text-sm font-sans font-thin' onClick={handleCategoryClick}>
@@ -35,7 +35,7 @@ const ProductFilter = () => {
 
             <div className='mt-4 px-2'>
                 <h1 className='text-[15px] text-gray-800'>Price</h1>
-                <input type="range" className='h-1 bg-orange-600 w-full ' />
+                <input type="range" className='h-1.5 bg-orange-600 cursor-pointer w-full' />
             </div>
         </section>
     )
