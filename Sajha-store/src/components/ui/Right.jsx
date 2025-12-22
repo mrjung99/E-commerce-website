@@ -16,8 +16,14 @@ const Right = () => {
                     <WishListButton />
                 </span>
             </NavLink>
-            <span className='flex gap-1 items-center justify-center cursor-pointer'>
-                <VscAccount size={21} className="text-gray-700" /><span className='text-[11px]'></span>
+            <span className='flex gap-3 items-center justify-center cursor-pointer font-sans'>
+                <NavLink to="/login">
+                    <span className="text-[14px] cursor-pointer hover:text-orange-600">Login</span>
+                </NavLink>
+
+                <NavLink to="/register">
+                    <span className="text-[14px] cursor-pointer hover:text-orange-600">Register</span>
+                </NavLink>
             </span>
         </div>
     )

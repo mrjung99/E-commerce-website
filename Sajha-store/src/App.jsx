@@ -10,6 +10,8 @@ import Cart from "./components/pages/Cart";
 import Checkout from "./components/pages/Checkout";
 import Wishlist from "./components/pages/Wishlist";
 import { WishListProvider } from "./context/WishListProvider";
+import Login from "./components/pages/Login";
+import Register from "./components/pages/Register";
 
 const App = () => {
 
@@ -48,6 +50,14 @@ const App = () => {
       {
         path: "/wishlist",
         element: <Wishlist />
+      },
+      {
+        path: "/login",
+        element: <Login />
+      },
+      {
+        path: "/register",
+        element: <Register />
       }
     ]
   }
