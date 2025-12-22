@@ -25,12 +25,12 @@ const ProductCard = ({ item }) => {
             <div className="absolute right-3 top-2 z-10">
                 <HeartIcon item={item} />
             </div>
-            <img src={item.photo} alt="" className='h-[200px] w-full object-cover rounded cursor-pointer mb-1' onClick={handleCardClick} />
-            <span className='text-[15px] text-gray-700 hover:text-blue-500 cursor-pointer font-sans'
+            <img src={item.photo} alt={name} className='h-[200px] w-full object-cover rounded cursor-pointer mb-1' onClick={handleCardClick} />
+            <p className='font-sans text-sm leading-4.5 text-gray-800 hover:text-blue-500 cursor-pointer '
                 onClick={handleCardClick}>
                 {truncatProductName(name)}
-            </span>
-            <div className="flex justify-between font-sans font-light">
+            </p>
+            <div className="flex justify-between font-sans font-light mt-1.5">
                 <span className='text-[17px] text-orange-600 font-normal'>Rs.{item.price}</span>
                 <span className="text-[13px] text-gray-700">Brand: <span className="text-blue-500">{item.brand.charAt(0).toUpperCase() + item.brand.slice(1)}</span>
                 </span>
