@@ -152,8 +152,8 @@ const Cart = () => {
                                 </div>
                             </div>
                             <NavLink to="/checkout">
-                                <button className='bg-orange-600 hover:bg-orange-700 text-white font-sans px-3 py-1 
-                                cursor-pointer mt-3 transition-colors duration-300 rounded-lg'>
+                                <button className='bg-orange-600 hover:bg-orange-500 text-white font-sans px-3 py-1 
+                                cursor-pointer mt-3 transition-colors duration-300 rounded'>
                                     Procced to Checkout
                                 </button>
                             </NavLink>
