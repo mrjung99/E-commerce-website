@@ -1,6 +1,4 @@
-import { FaRegHeart } from "react-icons/fa";
-import { IoCartOutline } from "react-icons/io5";
-import { VscAccount } from "react-icons/vsc";
+
 import CartIcon from "./CartIcon";
 import { NavLink } from "react-router-dom";
 import WishListButton from "./WishListButton";
