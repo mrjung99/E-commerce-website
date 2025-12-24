@@ -12,6 +12,9 @@ import Wishlist from "./components/pages/Wishlist";
 import { WishListProvider } from "./context/WishListProvider";
 import Login from "./components/pages/Login";
 import Register from "./components/pages/Register";
+import AuthProvider from "./context/AuthProvider";
+import ProtectedAuth from "./components/auth/ProtectedAuth";
+import LoginModel from "./components/ui/LoginModel";
 
 const App = () => {
 
@@ -41,15 +44,15 @@ const App = () => {
       },
       {
         path: "/cart",
-        element: <Cart />
+        element: <ProtectedAuth> <Cart /></ProtectedAuth>
       },
       {
         path: "/checkout",
-        element: <Checkout />
+        element: <ProtectedAuth> <Checkout /></ProtectedAuth>
       },
       {
         path: "/wishlist",
-        element: <Wishlist />
+        element: <ProtectedAuth> <Wishlist /></ProtectedAuth>
       },
       {
         path: "/login",
@@ -59,16 +62,19 @@ const App = () => {
         path: "/register",
         element: <Register />
       }
+
     ]
   }
   ])
 
   return (
-    <WishListProvider>
-      <CartProvider>
-        <RouterProvider router={router}></RouterProvider>
-      </CartProvider>
-    </WishListProvider>
+    <AuthProvider>
+      <WishListProvider>
+        <CartProvider>
+          <RouterProvider router={router}></RouterProvider>
+        </CartProvider>
+      </WishListProvider>
+    </AuthProvider>
   );
 };
 

@@ -28,24 +28,33 @@ const Register = () => {
                             <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
                                 <div className='flex flex-col'>
                                     <label htmlFor="firstname" className='font-sans text-sm text-gray-800 mb-1'>First Name:</label>
-                                    <input type="text" name='firstname' id='firstname' placeholder='Enter first name'
+                                    <input type="text" name='firstname' id='firstname' placeholder='First name'
                                         className='px-3 py-2.5 font-sans text-sm border border-gray-400 rounded outline-0 
                                         focus:border-orange-500 focus:ring-1 focus:ring-orange-200 transition-all duration-200' />
                                 </div>
                                 <div className='flex flex-col'>
                                     <label htmlFor="lastname" className='font-sans text-sm text-gray-800 mb-1'>Last Name:</label>
-                                    <input type="text" name='lastname' id='lastname' placeholder='Enter last name'
+                                    <input type="text" name='lastname' id='lastname' placeholder='Last name'
                                         className='px-3 py-2.5 font-sans text-sm border border-gray-400 rounded outline-0 
                                         focus:border-orange-500 focus:ring-1 focus:ring-orange-200 transition-all duration-200' />
                                 </div>
                             </div>
 
                             {/* Email */}
-                            <div className='flex flex-col'>
-                                <label htmlFor="email" className='font-sans text-sm text-gray-800 mb-1'>Email:</label>
-                                <input type="email" name='email' id='email' placeholder='Email address'
-                                    className='px-3 py-2.5 font-sans text-sm border border-gray-400 rounded outline-0 
+                            <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+
+                                <div className='flex flex-col'>
+                                    <label htmlFor="email" className='font-sans text-sm text-gray-800 mb-1'>Email:</label>
+                                    <input type="email" name='email' id='email' placeholder='Email address'
+                                        className='px-3 py-2.5 font-sans text-sm border border-gray-400 rounded outline-0 
                                     focus:border-orange-500 focus:ring-1 focus:ring-orange-200 transition-all duration-200' />
+                                </div>
+                                <div className='flex flex-col'>
+                                    <label htmlFor="phone" className='font-sans text-sm text-gray-800 mb-1'>Phone:</label>
+                                    <input type="phone" name='phone' id='phone' placeholder='Phone'
+                                        className='px-3 py-2.5 font-sans text-sm border border-gray-400 rounded outline-0 
+                                    focus:border-orange-500 focus:ring-1 focus:ring-orange-200 transition-all duration-200' />
+                                </div>
                             </div>
 
                             {/* Password Fields */}

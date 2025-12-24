@@ -1,12 +1,12 @@
 
 import React, { useEffect, useState } from 'react'
 import { AuthContext } from './AuthContext'
-import { useNavigate } from 'react-router-dom'
 
 const AuthProvider = ({ children }) => {
     const [user, setuser] = useState(null)
     const [loading, setLoading] = useState(true)
-    const navigate = useNavigate()
+    const [isAuthenticated, setIsAuthenticated] = useState(false)
+    const [showLoginModel, setShowLoginModel] = useState(false)
 
     useEffect(() => {
         const checkAuth = async () => {
@@ -16,7 +16,12 @@ const AuthProvider = ({ children }) => {
 
                 if (savedToken && savedUser) {
                     setuser(JSON.parse(savedUser))
+                    setIsAuthenticated(true)
+                } else {
+                    localStorage.removeItem("user-data")
+                    localStorage.removeItem('user-token')
                 }
+
             } catch (error) {
                 console.error("Auth error", error);
             } finally {
@@ -62,9 +67,11 @@ const AuthProvider = ({ children }) => {
             const { password: _, ...userWithoutPassword } = users;
             const token = `mock_jwt_${new Date()}_${founduser.id}`
 
-            setuser(userWithoutPassword)
             localStorage.setItem("user-data", JSON.stringify(userWithoutPassword))
             localStorage.setItem("user-token", token)
+            setuser(userWithoutPassword)
+            setIsAuthenticated(true)
+            setShowLoginModel(false)
 
             return { success: true, user: userWithoutPassword }
         } catch (error) {
@@ -94,12 +101,16 @@ const AuthProvider = ({ children }) => {
                 orders: []
             }
             users.push(newUser)
+
             const { password: _, ...userWithoutPass } = users
             const token = `mock_jwt${new Date()}_${userData.id}`
+
             localStorage.setItem("user-data", JSON.stringify(userWithoutPass))
             localStorage.setItem("user-token", token)
-
+            setuser(userWithoutPass)
+            setIsAuthenticated(true)
             return { success: true, user: userWithoutPass, message: "Registration successful" }
+
         } catch (error) {
             console.log(error);
             return { success: false, message: "Registration fail" }
@@ -110,11 +121,14 @@ const AuthProvider = ({ children }) => {
         setuser(null)
         localStorage.removeItem("user-data")
         localStorage.removeItem("user-token")
-        navigate("/")
+        setIsAuthenticated(false)
     }
 
+    const openLoginModel = () => setShowLoginModel(true)
+    const closeLoginModel = () => setShowLoginModel(false)
+
     return (
-        <AuthContext.Provider value={{ user, login, register, logout, loading }}>
+        <AuthContext.Provider value={{ user, login, register, logout, loading, isAuthenticated, showLoginModel, openLoginModel, closeLoginModel }}>
             {children}
         </AuthContext.Provider>
     )

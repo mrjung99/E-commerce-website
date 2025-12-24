@@ -73,6 +73,8 @@ const Search = () => {
             const searchQuery = typeof query === "string" ? query : String(query)
             const trimmedQuery = searchQuery.trim()
 
+            if (trimmedQuery === "") return
+
             const params = new URLSearchParams()
             if (trimmedQuery) {
                 params.set("q", trimmedQuery)
@@ -125,7 +127,7 @@ const Search = () => {
 
 
     return (
-        <div ref={searchRef} className='relative font-sans font-thin py-2 flex items-center 
+        <div ref={searchRef} className='relative py-2 flex items-center 
             justify-center w-lvh'>
             {/* <select name="category" id="" className='outline-0 bg-gray-white rounded p-2 text-[13px]  cursor-pointer'
                 value={selectedCategory}
@@ -141,7 +143,7 @@ const Search = () => {
 
             <div className="w-10/12 flex items-stretch">
                 <input type="text" placeholder='Search for product...'
-                    className='text-[15px] py-2 px-4  w-full bg-white outline-0 border border-orange-600 rounded-l-full 
+                    className='text-sm font-sans text-gray-800 py-2 px-4  w-full bg-white outline-0 border border-orange-600 rounded-l-full 
                     focus:shadow-[inset_0_0_5px_rgba(249,115,22,0.4)]'
                     value={searchTerm}
                     onChange={(e) => {
