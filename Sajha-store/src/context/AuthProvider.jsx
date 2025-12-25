@@ -6,7 +6,6 @@ const AuthProvider = ({ children }) => {
     const [user, setuser] = useState(null)
     const [loading, setLoading] = useState(true)
     const [isAuthenticated, setIsAuthenticated] = useState(false)
-    const [showLoginModel, setShowLoginModel] = useState(false)
 
     useEffect(() => {
         const checkAuth = async () => {
@@ -36,6 +35,8 @@ const AuthProvider = ({ children }) => {
             await new Promise(resolve => setTimeout(resolve, 500))
 
             const users = JSON.parse(localStorage.getItem("users-data")) || []
+            console.log("users length", users.length);
+
             if (users.length === 0) {
                 const newuser = {
                     email: "demo@gmail.com",
@@ -44,6 +45,7 @@ const AuthProvider = ({ children }) => {
                     phone: "9879792742",
                     address: "demo address",
                     role: "user",
+                    profile: '',
                     createdAt: new Date().toISOString(),
                     cart: [],
                     wishlist: [],
@@ -57,23 +59,28 @@ const AuthProvider = ({ children }) => {
             const founduser = users.find(user => user.email === email)
 
             if (!founduser) {
+                console.log("user not found");
+
                 return { success: false, message: "User not found" }
             }
 
-            if (!founduser.password !== password) {
+            if (founduser.password !== password) {
+                console.log("passwrod invalid");
+
                 return { success: false, message: "Invalid password" }
             }
 
-            const { password: _, ...userWithoutPassword } = users;
+            const { password: _, ...userWithoutPassword } = founduser;
             const token = `mock_jwt_${new Date()}_${founduser.id}`
 
             localStorage.setItem("user-data", JSON.stringify(userWithoutPassword))
             localStorage.setItem("user-token", token)
             setuser(userWithoutPassword)
             setIsAuthenticated(true)
-            setShowLoginModel(false)
 
+            console.log("isAuthenticated", isAuthenticated);
             return { success: true, user: userWithoutPassword }
+
         } catch (error) {
             console.log(error);
             return { success: false, message: "Invalid login" }
@@ -102,7 +109,7 @@ const AuthProvider = ({ children }) => {
             }
             users.push(newUser)
 
-            const { password: _, ...userWithoutPass } = users
+            const { password: _, ...userWithoutPass } = existUser
             const token = `mock_jwt${new Date()}_${userData.id}`
 
             localStorage.setItem("user-data", JSON.stringify(userWithoutPass))
@@ -124,11 +131,10 @@ const AuthProvider = ({ children }) => {
         setIsAuthenticated(false)
     }
 
-    const openLoginModel = () => setShowLoginModel(true)
-    const closeLoginModel = () => setShowLoginModel(false)
+
 
     return (
-        <AuthContext.Provider value={{ user, login, register, logout, loading, isAuthenticated, showLoginModel, openLoginModel, closeLoginModel }}>
+        <AuthContext.Provider value={{ user, login, register, logout, loading, isAuthenticated }}>
             {children}
         </AuthContext.Provider>
     )

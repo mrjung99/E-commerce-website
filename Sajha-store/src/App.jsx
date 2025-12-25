@@ -14,7 +14,6 @@ import Login from "./components/pages/Login";
 import Register from "./components/pages/Register";
 import AuthProvider from "./context/AuthProvider";
 import ProtectedAuth from "./components/auth/ProtectedAuth";
-import LoginModel from "./components/ui/LoginModel";
 
 const App = () => {
 
