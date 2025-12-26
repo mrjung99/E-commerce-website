@@ -14,6 +14,8 @@ import Login from "./components/pages/Login";
 import Register from "./components/pages/Register";
 import AuthProvider from "./context/AuthProvider";
 import ProtectedAuth from "./components/auth/ProtectedAuth";
+import Profile from "./components/pages/Profile";
+import Orders from "./components/pages/Orders";
 
 const App = () => {
 
@@ -60,6 +62,14 @@ const App = () => {
       {
         path: "/register",
         element: <Register />
+      },
+      {
+        path: "/profile",
+        element: <ProtectedAuth><Profile /></ProtectedAuth>
+      },
+      {
+        path: "/orders",
+        element: <ProtectedAuth><Orders /></ProtectedAuth>
       }
 
     ]
