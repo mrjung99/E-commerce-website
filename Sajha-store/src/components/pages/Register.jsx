@@ -1,20 +1,21 @@
 import React, { useState } from 'react'
 import { FaEyeSlash, FaEye, FaGoogle } from "react-icons/fa";
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import MessagePopup from '../ui/MessagePopup';
 
 
 const Register = () => {
     const [togglePassword, setTogglePassword] = useState(false)
-    const [error, setError] = useState("")
+    const [message, setMessage] = useState("")
+    const navigate = useNavigate()
     const [formData, setFormData] = useState({
         firstname: '',
         lastname: "",
         email: "",
         phone: "",
         password: "",
-        repasswrod: "",
+        repassword: "",
         country: "",
         zipcode: "",
         city: "",
@@ -24,20 +25,41 @@ const Register = () => {
 
     const { register } = useAuth()
 
+    const handleChange = (e) => {
+        const { name, value } = e.target
+        setFormData(prev => ({ ...prev, [name]: value }))
+    }
+
     const handleSubmitRegisterForm = (e) => {
         e.preventDefault()
 
         if (!formData.firstname || !formData.lastname || !formData.phone || !formData.country || !formData.state || !formData.zipcode || !formData.street) {
-            setError("Fill in all the fields!!")
+            setMessage("Fill in all the fields!!")
+            return
         }
 
-        if (formData.password !== formData.repasswrod) {
-            setError("Passwrod do not match try again!!")
+        if (formData.password !== formData.repassword) {
+            setMessage("Passwrod do not match try again!!")
+            return
         }
 
-        const { repasswrod: _, ...userData } = formData
-        register(userData)
+        if (!formData.email.includes("@")) {
+            setMessage("Email invalid")
+            return
+        }
 
+        const { repassword: _, ...userData } = formData
+        const result = register(userData)
+        console.log(userData);
+
+        if (result.ok) {
+            setMessage("Account created Successfully !!")
+            setTimeout(() => {
+                navigate("/", { replace: true })
+            }, 600);
+        } else {
+            setMessage(result.message)
+        }
 
     }
 
@@ -48,7 +70,7 @@ const Register = () => {
 
     return (
         <div className='px-4 py-2 md:px-6 md:py-4'>
-            {error && <MessagePopup error={error} />}
+            {message && <MessagePopup message={message} />}
             <div className='bg-white shadow-[0_0_1px_rgba(0,0,0,0.5)] w-full max-w-6xl mx-auto mb-8 px-4 md:px-8 py-4 md:py-6 rounded'>
                 <h1 className='text-xl md:text-2xl text-gray-800 mb-4 text-center md:text-left'>Create your Account</h1>
 
@@ -65,16 +87,17 @@ const Register = () => {
                                 <div className='flex flex-col'>
                                     <label htmlFor="firstname" className='font-sans text-sm text-gray-800 mb-1'>First Name:</label>
                                     <input type="text" name='firstname' id='firstname' placeholder='First name'
-                                        className='px-3 py-2.5 font-sans text-sm border border-gray-400 rounded outline-0 
-                                        focus:border-orange-500 focus:ring-1 focus:ring-orange-200 transition-all 
-                                        duration-200' value={formData.firstname} onChange={(e) => setFormData(e.target.value)} />
+                                        className={`px-3 py-2.5 font-sans text-sm border gray-400 ${formData.firstname === "" ? "border-orange-500 " : "border-gray-400 "} rounded outline-0 
+                                        -focus:ring-1 focus:ring-orange-200 transition-all 
+                                        duration-200` }
+                                        value={formData.firstname} onChange={handleChange} />
                                 </div>
                                 <div className='flex flex-col'>
                                     <label htmlFor="lastname" className='font-sans text-sm text-gray-800 mb-1'>Last Name:</label>
                                     <input type="text" name='lastname' id='lastname' placeholder='Last name'
                                         className='px-3 py-2.5 font-sans text-sm border border-gray-400 rounded outline-0 
                                         focus:border-orange-500 focus:ring-1 focus:ring-orange-200 transition-all 
-                                        duration-200' value={formData.lastname} onChange={(e) => setFormData(e.target.value)} />
+                                        duration-200' value={formData.lastname} onChange={handleChange} />
                                 </div>
                             </div>
 
@@ -86,14 +109,14 @@ const Register = () => {
                                     <input type="email" name='email' id='email' placeholder='Email address'
                                         className='px-3 py-2.5 font-sans text-sm border border-gray-400 rounded outline-0 
                                     focus:border-orange-500 focus:ring-1 focus:ring-orange-200 transition-all 
-                                    duration-200' value={formData.email} onChange={(e) => setFormData(e.target.value)} />
+                                    duration-200' value={formData.email} onChange={handleChange} />
                                 </div>
                                 <div className='flex flex-col'>
                                     <label htmlFor="phone" className='font-sans text-sm text-gray-800 mb-1'>Phone:</label>
                                     <input type="phone" name='phone' id='phone' placeholder='Phone'
                                         className='px-3 py-2.5 font-sans text-sm border border-gray-400 rounded outline-0 
                                     focus:border-orange-500 focus:ring-1 focus:ring-orange-200 transition-all 
-                                    duration-200' value={formData.phone} onChange={(e) => setFormData(e.target.value)} />
+                                    duration-200' value={formData.phone} onChange={handleChange} />
                                 </div>
                             </div>
 
@@ -110,7 +133,7 @@ const Register = () => {
                                             focus:border-orange-500 focus:ring-1 focus:ring-orange-200 
                                             transition-all duration-200 pr-10'
                                             value={formData.password}
-                                            onChange={e => setFormData(e.target.value)} />
+                                            onChange={handleChange} />
                                         <button
                                             type='button'
                                             onClick={handleShowHidePassword}
@@ -131,8 +154,8 @@ const Register = () => {
                                             id='repassword'
                                             className='w-full px-3 py-2.5 font-sans text-sm border border-gray-400 rounded outline-0 
                                             focus:border-orange-500 focus:ring-1 focus:ring-orange-200 
-                                            transition-all duration-200 pr-10' value={formData.repasswrod}
-                                            onChange={e => setFormData(e.target.value)} />
+                                            transition-all duration-200 pr-10' value={formData.repassword}
+                                            onChange={handleChange} />
                                         <button
                                             type='button'
                                             onClick={handleShowHidePassword}
@@ -162,21 +185,21 @@ const Register = () => {
                                     <input type="text" name='country' id='country' placeholder='Country'
                                         className='px-3 py-2.5 font-sans text-sm border border-gray-400 rounded outline-0 
                                         focus:border-orange-500 focus:ring-1 focus:ring-orange-200 transition-all 
-                                        duration-200' value={formData.country} onChange={e => setFormData(e.target.value)} />
+                                        duration-200' value={formData.country} onChange={handleChange} />
                                 </div>
                                 <div className='flex flex-col'>
                                     <label htmlFor="state" className='font-sans text-sm text-gray-800 mb-1'>State:</label>
                                     <input type="text" name='state' id='state' placeholder='State/Province'
                                         className='px-3 py-2.5 font-sans text-sm border border-gray-400 rounded outline-0 
                                         focus:border-orange-500 focus:ring-1 focus:ring-orange-200 transition-all 
-                                        duration-200' value={formData.state} onChange={e => setFormData(e.target.value)} />
+                                        duration-200' value={formData.state} onChange={handleChange} />
                                 </div>
                                 <div className='flex flex-col'>
                                     <label htmlFor="zipcode" className='font-sans text-sm text-gray-800 mb-1'>Zip Code:</label>
                                     <input type="text" name='zipcode' id='zipcode' placeholder='Zip/Postal code'
                                         className='px-3 py-2.5 font-sans text-sm border border-gray-400 rounded outline-0 
                                         focus:border-orange-500 focus:ring-1 focus:ring-orange-200 transition-all 
-                                        duration-200' value={setFormData.zipcode} onChange={e => setFormData(e.target.value)} />
+                                        duration-200' value={setFormData.zipcode} onChange={handleChange} />
                                 </div>
                             </div>
 
@@ -187,14 +210,14 @@ const Register = () => {
                                     <input type="text" name='city' id='city' placeholder='City'
                                         className='px-3 py-2.5 font-sans text-sm border border-gray-400 rounded outline-0 
                                         focus:border-orange-500 focus:ring-1 focus:ring-orange-200 transition-all 
-                                        duration-200' value={formData.city} onChange={e => setFormData(e.target.value)} />
+                                        duration-200' value={formData.city} onChange={handleChange} />
                                 </div>
                                 <div className='flex flex-col'>
                                     <label htmlFor="street" className='font-sans text-sm text-gray-800 mb-1'>Street Address:</label>
                                     <input type="text" name='street' id='street' placeholder='Street address'
                                         className='px-3 py-2.5 font-sans text-sm border border-gray-400 rounded outline-0 
                                         focus:border-orange-500 focus:ring-1 focus:ring-orange-200 transition-all 
-                                        duration-200' value={formData.street} onChange={e => setFormData(e.target.value)} />
+                                        duration-200' value={formData.street} onChange={handleChange} />
                                 </div>
                             </div>
                         </div>
