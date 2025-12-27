@@ -1,10 +1,45 @@
 import React, { useState } from 'react'
 import { FaEyeSlash, FaEye, FaGoogle } from "react-icons/fa";
 import { NavLink } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
+import MessagePopup from '../ui/MessagePopup';
 
 
 const Register = () => {
     const [togglePassword, setTogglePassword] = useState(false)
+    const [error, setError] = useState("")
+    const [formData, setFormData] = useState({
+        firstname: '',
+        lastname: "",
+        email: "",
+        phone: "",
+        password: "",
+        repasswrod: "",
+        country: "",
+        zipcode: "",
+        city: "",
+        state: "",
+        street: ""
+    })
+
+    const { register } = useAuth()
+
+    const handleSubmitRegisterForm = (e) => {
+        e.preventDefault()
+
+        if (!formData.firstname || !formData.lastname || !formData.phone || !formData.country || !formData.state || !formData.zipcode || !formData.street) {
+            setError("Fill in all the fields!!")
+        }
+
+        if (formData.password !== formData.repasswrod) {
+            setError("Passwrod do not match try again!!")
+        }
+
+        const { repasswrod: _, ...userData } = formData
+        register(userData)
+
+
+    }
 
     const handleShowHidePassword = (e) => {
         e.preventDefault()
@@ -13,10 +48,11 @@ const Register = () => {
 
     return (
         <div className='px-4 py-2 md:px-6 md:py-4'>
+            {error && <MessagePopup error={error} />}
             <div className='bg-white shadow-[0_0_1px_rgba(0,0,0,0.5)] w-full max-w-6xl mx-auto mb-8 px-4 md:px-8 py-4 md:py-6 rounded'>
                 <h1 className='text-xl md:text-2xl text-gray-800 mb-4 text-center md:text-left'>Create your Account</h1>
 
-                <form className='flex flex-col space-y-3'>
+                <form className='flex flex-col space-y-3' onSubmit={handleSubmitRegisterForm}>
                     {/* Main form grid with equal columns */}
                     <div className='grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-8'>
 
@@ -30,13 +66,15 @@ const Register = () => {
                                     <label htmlFor="firstname" className='font-sans text-sm text-gray-800 mb-1'>First Name:</label>
                                     <input type="text" name='firstname' id='firstname' placeholder='First name'
                                         className='px-3 py-2.5 font-sans text-sm border border-gray-400 rounded outline-0 
-                                        focus:border-orange-500 focus:ring-1 focus:ring-orange-200 transition-all duration-200' />
+                                        focus:border-orange-500 focus:ring-1 focus:ring-orange-200 transition-all 
+                                        duration-200' value={formData.firstname} onChange={(e) => setFormData(e.target.value)} />
                                 </div>
                                 <div className='flex flex-col'>
                                     <label htmlFor="lastname" className='font-sans text-sm text-gray-800 mb-1'>Last Name:</label>
                                     <input type="text" name='lastname' id='lastname' placeholder='Last name'
                                         className='px-3 py-2.5 font-sans text-sm border border-gray-400 rounded outline-0 
-                                        focus:border-orange-500 focus:ring-1 focus:ring-orange-200 transition-all duration-200' />
+                                        focus:border-orange-500 focus:ring-1 focus:ring-orange-200 transition-all 
+                                        duration-200' value={formData.lastname} onChange={(e) => setFormData(e.target.value)} />
                                 </div>
                             </div>
 
@@ -47,13 +85,15 @@ const Register = () => {
                                     <label htmlFor="email" className='font-sans text-sm text-gray-800 mb-1'>Email:</label>
                                     <input type="email" name='email' id='email' placeholder='Email address'
                                         className='px-3 py-2.5 font-sans text-sm border border-gray-400 rounded outline-0 
-                                    focus:border-orange-500 focus:ring-1 focus:ring-orange-200 transition-all duration-200' />
+                                    focus:border-orange-500 focus:ring-1 focus:ring-orange-200 transition-all 
+                                    duration-200' value={formData.email} onChange={(e) => setFormData(e.target.value)} />
                                 </div>
                                 <div className='flex flex-col'>
                                     <label htmlFor="phone" className='font-sans text-sm text-gray-800 mb-1'>Phone:</label>
                                     <input type="phone" name='phone' id='phone' placeholder='Phone'
                                         className='px-3 py-2.5 font-sans text-sm border border-gray-400 rounded outline-0 
-                                    focus:border-orange-500 focus:ring-1 focus:ring-orange-200 transition-all duration-200' />
+                                    focus:border-orange-500 focus:ring-1 focus:ring-orange-200 transition-all 
+                                    duration-200' value={formData.phone} onChange={(e) => setFormData(e.target.value)} />
                                 </div>
                             </div>
 
@@ -67,12 +107,15 @@ const Register = () => {
                                             name='password'
                                             id='password'
                                             className='w-full px-3 py-2.5 font-sans text-sm border border-gray-400 rounded outline-0 
-                                            focus:border-orange-500 focus:ring-1 focus:ring-orange-200 transition-all duration-200 pr-10' />
+                                            focus:border-orange-500 focus:ring-1 focus:ring-orange-200 
+                                            transition-all duration-200 pr-10'
+                                            value={formData.password}
+                                            onChange={e => setFormData(e.target.value)} />
                                         <button
                                             type='button'
                                             onClick={handleShowHidePassword}
-                                            className='absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 
-                                            focus:outline-none'
+                                            className='absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-600 hover:text-gray-700 
+                                            focus:outline-none cursor-pointer'
                                             aria-label={togglePassword ? "Hide password" : "Show password"}>
                                             {togglePassword ? <FaEyeSlash size={18} /> : <FaEye size={18} />}
                                         </button>
@@ -87,12 +130,14 @@ const Register = () => {
                                             name='repassword'
                                             id='repassword'
                                             className='w-full px-3 py-2.5 font-sans text-sm border border-gray-400 rounded outline-0 
-                                            focus:border-orange-500 focus:ring-1 focus:ring-orange-200 transition-all duration-200 pr-10' />
+                                            focus:border-orange-500 focus:ring-1 focus:ring-orange-200 
+                                            transition-all duration-200 pr-10' value={formData.repasswrod}
+                                            onChange={e => setFormData(e.target.value)} />
                                         <button
                                             type='button'
                                             onClick={handleShowHidePassword}
-                                            className='absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 
-                                            focus:outline-none'
+                                            className='absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-600 hover:text-gray-700 
+                                            focus:outline-none cursor-pointer'
                                             aria-label={togglePassword ? "Hide password" : "Show password"}>
                                             {togglePassword ? <FaEyeSlash size={18} /> : <FaEye size={18} />}
                                         </button>
@@ -116,19 +161,22 @@ const Register = () => {
                                     <label htmlFor="country" className='font-sans text-sm text-gray-800 mb-1'>Country:</label>
                                     <input type="text" name='country' id='country' placeholder='Country'
                                         className='px-3 py-2.5 font-sans text-sm border border-gray-400 rounded outline-0 
-                                        focus:border-orange-500 focus:ring-1 focus:ring-orange-200 transition-all duration-200' />
+                                        focus:border-orange-500 focus:ring-1 focus:ring-orange-200 transition-all 
+                                        duration-200' value={formData.country} onChange={e => setFormData(e.target.value)} />
                                 </div>
                                 <div className='flex flex-col'>
                                     <label htmlFor="state" className='font-sans text-sm text-gray-800 mb-1'>State:</label>
                                     <input type="text" name='state' id='state' placeholder='State/Province'
                                         className='px-3 py-2.5 font-sans text-sm border border-gray-400 rounded outline-0 
-                                        focus:border-orange-500 focus:ring-1 focus:ring-orange-200 transition-all duration-200' />
+                                        focus:border-orange-500 focus:ring-1 focus:ring-orange-200 transition-all 
+                                        duration-200' value={formData.state} onChange={e => setFormData(e.target.value)} />
                                 </div>
                                 <div className='flex flex-col'>
                                     <label htmlFor="zipcode" className='font-sans text-sm text-gray-800 mb-1'>Zip Code:</label>
                                     <input type="text" name='zipcode' id='zipcode' placeholder='Zip/Postal code'
                                         className='px-3 py-2.5 font-sans text-sm border border-gray-400 rounded outline-0 
-                                        focus:border-orange-500 focus:ring-1 focus:ring-orange-200 transition-all duration-200' />
+                                        focus:border-orange-500 focus:ring-1 focus:ring-orange-200 transition-all 
+                                        duration-200' value={setFormData.zipcode} onChange={e => setFormData(e.target.value)} />
                                 </div>
                             </div>
 
@@ -138,13 +186,15 @@ const Register = () => {
                                     <label htmlFor="city" className='font-sans text-sm text-gray-800 mb-1'>City:</label>
                                     <input type="text" name='city' id='city' placeholder='City'
                                         className='px-3 py-2.5 font-sans text-sm border border-gray-400 rounded outline-0 
-                                        focus:border-orange-500 focus:ring-1 focus:ring-orange-200 transition-all duration-200' />
+                                        focus:border-orange-500 focus:ring-1 focus:ring-orange-200 transition-all 
+                                        duration-200' value={formData.city} onChange={e => setFormData(e.target.value)} />
                                 </div>
                                 <div className='flex flex-col'>
                                     <label htmlFor="street" className='font-sans text-sm text-gray-800 mb-1'>Street Address:</label>
                                     <input type="text" name='street' id='street' placeholder='Street address'
                                         className='px-3 py-2.5 font-sans text-sm border border-gray-400 rounded outline-0 
-                                        focus:border-orange-500 focus:ring-1 focus:ring-orange-200 transition-all duration-200' />
+                                        focus:border-orange-500 focus:ring-1 focus:ring-orange-200 transition-all 
+                                        duration-200' value={formData.street} onChange={e => setFormData(e.target.value)} />
                                 </div>
                             </div>
                         </div>
@@ -162,7 +212,7 @@ const Register = () => {
                     <div className='text-center pt-4'>
                         <button
                             type='submit'
-                            className='w-full md:w-auto bg-orange-600 hover:bg-orange-700 text-white font-medium py-3 px-8 rounded 
+                            className='w-full md:w-auto bg-orange-600 hover:bg-orange-500 text-white font-medium py-3 px-8 rounded 
                             transition-all duration-300 ease-in-out transform hover:scale-[1.02] focus:outline-none focus:ring-2 
                         focus:ring-orange-500 focus:ring-offset-2 cursor-pointer'>
                             Create Account
