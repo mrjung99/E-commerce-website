@@ -60,7 +60,7 @@ const Login = () => {
                   name="password"
                   id="password"
                   className="w-full bg-gray-100 px-3 py-2 font-sans 
-                                text-sm border border-orange-600 focus:shadow-[inset_0_0_4px_rgba(249,115,22,0.4)] rounded outline-0"
+                  text-sm border border-orange-600 focus:shadow-[inset_0_0_4px_rgba(249,115,22,0.4)] rounded outline-0"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
