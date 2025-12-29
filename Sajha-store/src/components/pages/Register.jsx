@@ -57,7 +57,10 @@ const Register = () => {
 
     const { repassword: _, ...userData } = formData;
     const result = register(userData);
+    setMessage(result.message);
+
     console.log(userData);
+    console.log(result.ok);
 
     if (result.ok) {
       setMessage("Account created Successfully !!");

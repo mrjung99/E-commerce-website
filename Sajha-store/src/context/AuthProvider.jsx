@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { AuthContext } from "./AuthContext";
-import { data } from "react-router-dom";
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -38,13 +37,17 @@ const AuthProvider = ({ children }) => {
 
       if (users.length === 0) {
         const newuser = {
+          id: Date.now(),
+          firstname: "demo",
+          lastname: "user",
           email: "demo@gmail.com",
+          phone: "908080800",
           password: "demo123",
-          name: "demo user",
-          phone: "9879792742",
-          address: "demo address",
-          role: "user",
-          profile: "",
+          country: "demo",
+          zipcode: "999",
+          city: "demo",
+          state: "demo",
+          street: "demo",
           createdAt: new Date().toISOString(),
           cart: [],
           wishlist: [],
@@ -74,7 +77,7 @@ const AuthProvider = ({ children }) => {
 
       localStorage.setItem("user-data", JSON.stringify(userWithoutPassword));
       localStorage.setItem("user-token", token);
-      setuser(userWithoutPassword);
+      setUser(userWithoutPassword);
       setIsAuthenticated(true);
 
       console.log("isAuthenticated", isAuthenticated);
@@ -85,6 +88,7 @@ const AuthProvider = ({ children }) => {
     }
   };
 
+  /*===============register==========*/
   const register = async (userData) => {
     try {
       await new Promise((resolve) => setTimeout(resolve, 500));
@@ -113,7 +117,7 @@ const AuthProvider = ({ children }) => {
 
       localStorage.setItem("user-data", JSON.stringify(userWithoutPass));
       localStorage.setItem("user-token", token);
-      setuser(userWithoutPass);
+      setUser(userWithoutPass);
       setIsAuthenticated(true);
       return {
         success: true,
@@ -127,7 +131,7 @@ const AuthProvider = ({ children }) => {
   };
 
   const logout = () => {
-    setuser(null);
+    setUser(null);
     localStorage.removeItem("user-data");
     localStorage.removeItem("user-token");
     setIsAuthenticated(false);
