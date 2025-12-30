@@ -48,7 +48,6 @@ const App = () => {
           path: "/cart",
           element: (
             <ProtectedAuth>
-              {" "}
               <Cart />
             </ProtectedAuth>
           ),
@@ -57,7 +56,6 @@ const App = () => {
           path: "/checkout",
           element: (
             <ProtectedAuth>
-              {" "}
               <Checkout />
             </ProtectedAuth>
           ),
@@ -66,7 +64,6 @@ const App = () => {
           path: "/wishlist",
           element: (
             <ProtectedAuth>
-              {" "}
               <Wishlist />
             </ProtectedAuth>
           ),

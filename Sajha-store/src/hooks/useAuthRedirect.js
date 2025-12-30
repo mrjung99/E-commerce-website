@@ -10,7 +10,11 @@ const useAuthRedirect = () => {
   };
 
   const redirectAfterLogin = (path) => {
-    navigate(path, { replace: true });
+    if (isAuthenticated) {
+      navigate(path, { replace: true });
+    } else {
+      navigate("/");
+    }
   };
 
   return {

@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { FaEyeSlash, FaEye, FaGoogle } from "react-icons/fa";
-import { Navigate, NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import useAuthRedirect from "../../hooks/useAuthRedirect";
-import MessagePopup from "../ui/MessagePopup";
 import { useMessage } from "../../context/MessageContext";
 
 const Login = () => {
@@ -11,7 +10,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { login, isAuthenticated } = useAuth();
+  const { login } = useAuth();
   const { showMessage } = useMessage();
   const { redirectAfterLogin } = useAuthRedirect();
   const location = useLocation();
@@ -27,10 +26,6 @@ const Login = () => {
         showMessage(result.message, "success", 3000);
       } else {
         showMessage(result.message, "error", 4000);
-      }
-
-      if (isAuthenticated) {
-        <Navigate to="/" replace />;
       }
     } catch (error) {
       console.log(error);

@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { FaEyeSlash, FaEye, FaGoogle } from "react-icons/fa";
-import { Navigate, NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { useMessage } from "../../context/MessageContext";
 
@@ -21,7 +21,7 @@ const Register = () => {
     street: "",
   };
   const [formData, setFormData] = useState(initialFormData);
-  const { register, isAuthenticated } = useAuth();
+  const { register } = useAuth();
   const { showMessage } = useMessage();
 
   const handleChange = (e) => {
@@ -64,10 +64,6 @@ const Register = () => {
       navigate("/", { replace: true });
     } else {
       showMessage(result.message, "error", 5000);
-    }
-
-    if (isAuthenticated) {
-      <Navigate to="/" replace />;
     }
   };
 

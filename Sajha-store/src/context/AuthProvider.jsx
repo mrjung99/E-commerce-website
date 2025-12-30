@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { AuthContext } from "./AuthContext";
+import { Navigate } from "react-router-dom";
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-
   useEffect(() => {
     const checkAuth = async () => {
       try {
@@ -61,7 +61,6 @@ const AuthProvider = ({ children }) => {
 
       if (!founduser) {
         console.log("user not found");
-
         return { success: false, message: "User not found" };
       }
 

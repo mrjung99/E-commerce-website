@@ -1,11 +1,12 @@
 import { useAuth } from "../../context/AuthContext";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const PublicAuth = ({ children }) => {
   const { isAuthenticated } = useAuth();
+  const navigate = useNavigate();
 
   if (isAuthenticated) {
-    return <Navigate to="/" replace />;
+    navigate("/", { replace: true });
   }
 
   return children;
