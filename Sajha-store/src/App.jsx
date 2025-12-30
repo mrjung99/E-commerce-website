@@ -16,74 +16,99 @@ import AuthProvider from "./context/AuthProvider";
 import ProtectedAuth from "./components/auth/ProtectedAuth";
 import Profile from "./components/pages/Profile";
 import Orders from "./components/pages/Orders";
+import MessageProvider from "./context/MessageProvider";
 
 const App = () => {
-
-  const router = createBrowserRouter([{
-    path: "/",
-    element: <Layout />,
-    children: [
-      {
-        path: '/',
-        element: <Home />
-      },
-      {
-        path: '/product',
-        element: <Product />
-      },
-      {
-        path: '/about',
-        element: <About />
-      },
-      {
-        path: "/search",
-        element: <SearchResult />
-      },
-      {
-        path: "/productDetails/:id",
-        element: <ProductDetails />
-      },
-      {
-        path: "/cart",
-        element: <ProtectedAuth> <Cart /></ProtectedAuth>
-      },
-      {
-        path: "/checkout",
-        element: <ProtectedAuth> <Checkout /></ProtectedAuth>
-      },
-      {
-        path: "/wishlist",
-        element: <ProtectedAuth> <Wishlist /></ProtectedAuth>
-      },
-      {
-        path: "/login",
-        element: <Login />
-      },
-      {
-        path: "/register",
-        element: <Register />
-      },
-      {
-        path: "/profile",
-        element: <ProtectedAuth><Profile /></ProtectedAuth>
-      },
-      {
-        path: "/orders",
-        element: <ProtectedAuth><Orders /></ProtectedAuth>
-      }
-
-    ]
-  }
-  ])
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Layout />,
+      children: [
+        {
+          path: "/",
+          element: <Home />,
+        },
+        {
+          path: "/product",
+          element: <Product />,
+        },
+        {
+          path: "/about",
+          element: <About />,
+        },
+        {
+          path: "/search",
+          element: <SearchResult />,
+        },
+        {
+          path: "/productDetails/:id",
+          element: <ProductDetails />,
+        },
+        {
+          path: "/cart",
+          element: (
+            <ProtectedAuth>
+              {" "}
+              <Cart />
+            </ProtectedAuth>
+          ),
+        },
+        {
+          path: "/checkout",
+          element: (
+            <ProtectedAuth>
+              {" "}
+              <Checkout />
+            </ProtectedAuth>
+          ),
+        },
+        {
+          path: "/wishlist",
+          element: (
+            <ProtectedAuth>
+              {" "}
+              <Wishlist />
+            </ProtectedAuth>
+          ),
+        },
+        {
+          path: "/login",
+          element: <Login />,
+        },
+        {
+          path: "/register",
+          element: <Register />,
+        },
+        {
+          path: "/profile",
+          element: (
+            <ProtectedAuth>
+              <Profile />
+            </ProtectedAuth>
+          ),
+        },
+        {
+          path: "/orders",
+          element: (
+            <ProtectedAuth>
+              <Orders />
+            </ProtectedAuth>
+          ),
+        },
+      ],
+    },
+  ]);
 
   return (
-    <AuthProvider>
-      <WishListProvider>
-        <CartProvider>
-          <RouterProvider router={router}></RouterProvider>
-        </CartProvider>
-      </WishListProvider>
-    </AuthProvider>
+    <MessageProvider>
+      <AuthProvider>
+        <WishListProvider>
+          <CartProvider>
+            <RouterProvider router={router}></RouterProvider>
+          </CartProvider>
+        </WishListProvider>
+      </AuthProvider>
+    </MessageProvider>
   );
 };
 

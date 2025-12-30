@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import { FaEyeSlash, FaEye, FaGoogle } from "react-icons/fa";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Navigate, NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
-import MessagePopup from "../ui/MessagePopup";
+import { useMessage } from "../../context/MessageContext";
 
 const Register = () => {
   const [togglePassword, setTogglePassword] = useState(false);
-  const [message, setMessage] = useState("");
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({
+  const initialFormData = {
     firstname: "",
     lastname: "",
     email: "",
@@ -20,16 +19,17 @@ const Register = () => {
     city: "",
     state: "",
     street: "",
-  });
-
-  const { register } = useAuth();
+  };
+  const [formData, setFormData] = useState(initialFormData);
+  const { register, isAuthenticated } = useAuth();
+  const { showMessage } = useMessage();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmitRegisterForm = (e) => {
+  const handleSubmitRegisterForm = async (e) => {
     e.preventDefault();
 
     if (
@@ -41,34 +41,33 @@ const Register = () => {
       !formData.zipcode ||
       !formData.street
     ) {
-      setMessage("Fill in all the fields!!");
+      showMessage("Please fill in all the fields!!", "error", 5000);
       return;
     }
 
     if (formData.password !== formData.repassword) {
-      setMessage("Passwrod do not match try again!!");
+      showMessage("Password do not matched!! try agian.", "error", 5000);
       return;
     }
 
-    if (!formData.email.includes("@")) {
-      setMessage("Email invalid");
+    if (!formData.email.includes("@") || !formData.email.includes(".")) {
+      showMessage("Invalid email, enter again", "error", 5000);
       return;
     }
 
     const { repassword: _, ...userData } = formData;
-    const result = register(userData);
-    setMessage(result.message);
+    const result = await register(userData);
 
-    console.log(userData);
-    console.log(result.ok);
-
-    if (result.ok) {
-      setMessage("Account created Successfully !!");
-      setTimeout(() => {
-        navigate("/", { replace: true });
-      }, 600);
+    if (result.success) {
+      showMessage(result.message, "success", 5000);
+      setFormData(initialFormData);
+      navigate("/", { replace: true });
     } else {
-      setMessage(result.message);
+      showMessage(result.message, "error", 5000);
+    }
+
+    if (isAuthenticated) {
+      <Navigate to="/" replace />;
     }
   };
 
@@ -79,7 +78,6 @@ const Register = () => {
 
   return (
     <div className="px-4 py-2 md:px-6 md:py-4">
-      {message && <MessagePopup message={message} />}
       <div className="bg-white shadow-[0_0_1px_rgba(0,0,0,0.5)] w-full max-w-6xl mx-auto mb-8 px-4 md:px-8 py-4 md:py-6 rounded">
         <h1 className="text-xl md:text-2xl text-gray-800 mb-4 text-center md:text-left">
           Create your Account
@@ -250,21 +248,6 @@ const Register = () => {
                       value={formData.repassword}
                       onChange={handleChange}
                     />
-                    <button
-                      type="button"
-                      onClick={handleShowHidePassword}
-                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-600 hover:text-gray-700 
-                                            focus:outline-none cursor-pointer"
-                      aria-label={
-                        togglePassword ? "Hide password" : "Show password"
-                      }
-                    >
-                      {togglePassword ? (
-                        <FaEyeSlash size={18} />
-                      ) : (
-                        <FaEye size={18} />
-                      )}
-                    </button>
                   </div>
                 </div>
               </div>
@@ -340,7 +323,7 @@ const Register = () => {
                         ? "border-orange-500"
                         : "border-gray-400"
                     } rounded outline-0 focus:ring-1 focus:ring-orange-200 transition-all duration-200`}
-                    value={setFormData.zipcode}
+                    value={formData.zipcode}
                     onChange={handleChange}
                   />
                 </div>

@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { AuthContext } from "./AuthContext";
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -14,7 +13,6 @@ const AuthProvider = ({ children }) => {
 
         if (savedToken && savedUser) {
           setUser(JSON.parse(savedUser));
-          setIsAuthenticated(true);
         } else {
           localStorage.removeItem("user-data");
           localStorage.removeItem("user-token");
@@ -28,6 +26,7 @@ const AuthProvider = ({ children }) => {
     checkAuth();
   }, []);
 
+  /*====================login method=========================*/
   const login = async (email, password) => {
     try {
       await new Promise((resolve) => setTimeout(resolve, 500));
@@ -78,10 +77,12 @@ const AuthProvider = ({ children }) => {
       localStorage.setItem("user-data", JSON.stringify(userWithoutPassword));
       localStorage.setItem("user-token", token);
       setUser(userWithoutPassword);
-      setIsAuthenticated(true);
 
-      console.log("isAuthenticated", isAuthenticated);
-      return { success: true, user: userWithoutPassword };
+      return {
+        success: true,
+        user: userWithoutPassword,
+        message: "Logged in Successfully",
+      };
     } catch (error) {
       console.log(error);
       return { success: false, message: "Invalid login" };
@@ -118,11 +119,10 @@ const AuthProvider = ({ children }) => {
       localStorage.setItem("user-data", JSON.stringify(userWithoutPass));
       localStorage.setItem("user-token", token);
       setUser(userWithoutPass);
-      setIsAuthenticated(true);
       return {
         success: true,
         user: userWithoutPass,
-        message: "Registration successful",
+        message: "Account created successfully",
       };
     } catch (error) {
       console.log(error);
@@ -130,16 +130,23 @@ const AuthProvider = ({ children }) => {
     }
   };
 
+  /*=======================logout==========================*/
   const logout = () => {
     setUser(null);
     localStorage.removeItem("user-data");
     localStorage.removeItem("user-token");
-    setIsAuthenticated(false);
   };
 
   return (
     <AuthContext.Provider
-      value={{ user, login, register, logout, loading, isAuthenticated }}
+      value={{
+        user,
+        login,
+        register,
+        logout,
+        loading,
+        isAuthenticated: !!user,
+      }}
     >
       {children}
     </AuthContext.Provider>
